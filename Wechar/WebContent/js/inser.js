@@ -1,18 +1,18 @@
 $(function(){
 	$(".logs a").click(function(){
-//		Object {info: "登录成功，进入会员中心", status: "y", timeto: "3000", goto: "main.php"}
+		//这个是我的ajax异步请求方法
 		$.ajax({
 			type:"POST",
 			url:"dologin.action",
 			dataType:'json',
 			data:{"uName":$("#uName").val(),"uPwd":$("#uPwd").val()},
 			cache:false,
-			success:function(data){
+			success:function(data){    //注意看这里data，待会他就是json了    来做个测试看看
 				console.log(data);
 				ZENG.msgbox.show(data.info,6,data.timeto);
 				if(data.status=="y"){
 					setTimeout(function(){
-					if(data.gotoPage==""){
+					if(data.gotoPage==""||data.gotoPage==null){
 					  window.location.reload();
 					}else{
 					  window.location.href = ""+data.gotoPage+"";

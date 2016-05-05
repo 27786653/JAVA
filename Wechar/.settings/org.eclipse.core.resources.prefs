@@ -1,4 +1,6 @@
 eclipse.preferences.version=1
 encoding//WebContent/jsp/Community/Communitymanagement.jsp=UTF-8
+encoding//WebContent/jsp/notice/notice.jsp=UTF-8
+encoding//WebContent/jsp/notice/noticedetail.jsp=UTF-8
 encoding//WebContent/jsp/userinfo/chooisCity.jsp=UTF-8
 encoding//WebContent/jsp/userinfo/dologin.jsp=UTF-8

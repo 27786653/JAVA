@@ -1,0 +1,228 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.project.dao.NoticeMapper" >
+  <resultMap id="BaseResultMap" type="com.project.entitys.Notice" >
+    <id column="n_id" property="nId" jdbcType="INTEGER" />
+    <result column="n_content" property="nContent" jdbcType="VARCHAR" />
+    <result column="n_title" property="nTitle" jdbcType="VARCHAR" />
+    <result column="n_users" property="nUsers" jdbcType="INTEGER" />
+    <result column="n_createTime" property="nCreatetime" jdbcType="TIMESTAMP" />
+    <result column="n_state" property="nState" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    n_id, n_content, n_title, n_users, n_createTime, n_state
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.project.entitys.NoticeExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from notice
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from notice
+    where n_id = #{nId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from notice
+    where n_id = #{nId,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.project.entitys.NoticeExample" >
+    delete from notice
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.project.entitys.Notice" >
+    insert into notice (n_id, n_content, n_title, 
+      n_users, n_createTime, n_state
+      )
+    values (#{nId,jdbcType=INTEGER}, #{nContent,jdbcType=VARCHAR}, #{nTitle,jdbcType=VARCHAR}, 
+      #{nUsers,jdbcType=INTEGER}, #{nCreatetime,jdbcType=TIMESTAMP}, #{nState,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.project.entitys.Notice" >
+    insert into notice
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="nId != null" >
+        n_id,
+      </if>
+      <if test="nContent != null" >
+        n_content,
+      </if>
+      <if test="nTitle != null" >
+        n_title,
+      </if>
+      <if test="nUsers != null" >
+        n_users,
+      </if>
+      <if test="nCreatetime != null" >
+        n_createTime,
+      </if>
+      <if test="nState != null" >
+        n_state,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="nId != null" >
+        #{nId,jdbcType=INTEGER},
+      </if>
+      <if test="nContent != null" >
+        #{nContent,jdbcType=VARCHAR},
+      </if>
+      <if test="nTitle != null" >
+        #{nTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="nUsers != null" >
+        #{nUsers,jdbcType=INTEGER},
+      </if>
+      <if test="nCreatetime != null" >
+        #{nCreatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="nState != null" >
+        #{nState,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.project.entitys.NoticeExample" resultType="java.lang.Integer" >
+    select count(*) from notice
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update notice
+    <set >
+      <if test="record.nId != null" >
+        n_id = #{record.nId,jdbcType=INTEGER},
+      </if>
+      <if test="record.nContent != null" >
+        n_content = #{record.nContent,jdbcType=VARCHAR},
+      </if>
+      <if test="record.nTitle != null" >
+        n_title = #{record.nTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="record.nUsers != null" >
+        n_users = #{record.nUsers,jdbcType=INTEGER},
+      </if>
+      <if test="record.nCreatetime != null" >
+        n_createTime = #{record.nCreatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.nState != null" >
+        n_state = #{record.nState,jdbcType=INTEGER},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update notice
+    set n_id = #{record.nId,jdbcType=INTEGER},
+      n_content = #{record.nContent,jdbcType=VARCHAR},
+      n_title = #{record.nTitle,jdbcType=VARCHAR},
+      n_users = #{record.nUsers,jdbcType=INTEGER},
+      n_createTime = #{record.nCreatetime,jdbcType=TIMESTAMP},
+      n_state = #{record.nState,jdbcType=INTEGER}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.project.entitys.Notice" >
+    update notice
+    <set >
+      <if test="nContent != null" >
+        n_content = #{nContent,jdbcType=VARCHAR},
+      </if>
+      <if test="nTitle != null" >
+        n_title = #{nTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="nUsers != null" >
+        n_users = #{nUsers,jdbcType=INTEGER},
+      </if>
+      <if test="nCreatetime != null" >
+        n_createTime = #{nCreatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="nState != null" >
+        n_state = #{nState,jdbcType=INTEGER},
+      </if>
+    </set>
+    where n_id = #{nId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.project.entitys.Notice" >
+    update notice
+    set n_content = #{nContent,jdbcType=VARCHAR},
+      n_title = #{nTitle,jdbcType=VARCHAR},
+      n_users = #{nUsers,jdbcType=INTEGER},
+      n_createTime = #{nCreatetime,jdbcType=TIMESTAMP},
+      n_state = #{nState,jdbcType=INTEGER}
+    where n_id = #{nId,jdbcType=INTEGER}
+  </update>
+</mapper>

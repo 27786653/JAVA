@@ -128,7 +128,7 @@ function ls(k,f) {
 <div class="home-icon">
 <table width="100%" border="0" cellspacing="0" cellpadding="0">
   <tbody><tr>
-    <td><a href="http://56xiaoqu.com/notice.php" class="icon col1"><i class="fa fa-envelope fa-3x pr">
+    <td><a href="getnoticeList.action" class="icon col1"><i class="fa fa-envelope fa-3x pr">
         <span class="pa pnum">3</span>
         </i>
     </a></td>
@@ -137,7 +137,7 @@ function ls(k,f) {
     <td><a href="javascript:;" onclick="doyezu()" class="icon col4"><i class="fa fa-jpy fa-3x"></i></a></td>
   </tr>
   <tr>
-    <th><a href="http://56xiaoqu.com/notice.php">物业通知</a></th>
+    <th><a href="getnoticeList.action">物业通知</a></th>
     <th><a href="javascript:;" onclick="doyezu()">在线报修</a></th>
     <th><a href="http://56xiaoqu.com/service.php">物业服务</a></th>
     <th><a href="javascript:;" onclick="doyezu()">我的账单</a></th>

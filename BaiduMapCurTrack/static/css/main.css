@@ -1,0 +1,238 @@
+html,
+body {
+	font: 14px/1.5 "Microsoft Yahei", arial, "Hiragino Sans GB", sans-serif;
+	background: #ffffff;
+	height: 100%;
+	overflow: hidden;
+}
+ul,
+li {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+a:focus {
+	outline: none !important;
+}
+.login a {
+	color: #000000;
+	padding: 0px 5px;
+}
+.login a:hover {
+	color: #3189F3;
+	text-decoration: none;
+}
+.login .alink-3 {
+	color: #3189F3;
+	margin-right: 0px;
+}
+.login {
+	z-index: 100;
+	position: absolute;
+	top: 6px;
+	color: #000000;
+	line-height: 28px;
+	right: 10px;
+	height: 26px;
+	font-size: 13px;
+	background: #ffffff;
+	box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.3);
+}
+.login li {
+	float: left;
+	display: inline-block;
+}
+.login a span {
+	position: relative;
+	top: -1px;
+	left: 4px;
+}
+#user-login {
+	display: none;
+	height:52px;
+}
+.user-state-div {
+	text-align: center;
+	position: relative;
+	top: -2px;
+	width: 100%;
+	height: 55px;
+	font-size: 12px;
+	background: #ffffff;
+	box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.3);
+	display: none;
+}
+.left {
+	float: left;
+}
+.right {
+	float: right;
+}
+.tip-triangel-up {
+	position: absolute;
+	left: 166px;
+	top: -19px;
+	width: 0;
+	height: 0;
+	line-height: 0;
+	border-width: 10px;
+	border-style: solid;
+	border-color: transparent transparent #ffffff transparent;
+}
+.contact-tip {
+	position: absolute;
+	right: 10px;
+	top: 43px;
+	height: 30px;
+	text-align: center;
+	line-height: 30px;
+	width: 210px;
+	border: 1px solid #dddddd;
+	background-color: #ffffff;
+	display: none;
+	/* border-radius: 4px;
+	*/
+	/* box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.3);
+	*/
+}
+.contact-tip span {
+	position: relative;
+	font-size: 15px;
+	color: #3189F3;
+	margin-left: 5px;
+}
+.message {
+	position: absolute;
+	right: 12px;
+	top: 52px;
+	height: 30px;
+	text-align: center;
+	line-height: 30px;
+	width: 220px;
+	border: 1px solid #dddddd;
+	background-color: #ffffff;
+	z-index: 1000;
+}
+.message .tip-email {
+	position:absolute;
+	font-size: 15px;
+	color: #3189F3;
+	margin-left: 15px;
+	top:-1px;
+	left:10px;
+	height:30px;
+	line-height:30px;
+}
+.message .tip-email:hover{
+	color: #3189F3;
+}
+.message img {
+	position: absolute;
+	top: 7px;
+	left: 2px;
+}
+.menu {
+	height: 72px;
+	background: #484743;
+	width: 100%;
+	overflow: hidden;
+	color: #FFF;
+	z-index: 10;
+	box-shadow: 0 0 3px rgba(0, 0, 0, 0.3);
+}
+.nav-header .wraper {
+	width: 1050px;
+	margin: 0 auto;
+}
+.logo {
+	display: block;
+	margin: 8px 20px 0 20px;
+	width: 199px;
+	height: 46px;
+	background: url(../images/logo.png);
+}
+.menu-ul li {
+	display: inline-block;
+	float: left;
+}
+.nav-header-item {
+	font-size: 20px;
+	letter-spacing: 1px;
+	text-decoration: none;
+	float: left;
+	height: 72px;
+	line-height: 72px;
+	width: 173px;
+	text-align: center;
+	position: relative;
+}
+.nav-header-item a {
+	display: block;
+	text-decoration: none;
+	color: #D0D0D0;
+}
+.line {
+	display: none;
+	background-color: #FFFFFF;
+	height: 1px;
+	width: 21px;
+	position: absolute;
+	bottom: 18px;
+	left: 76px;
+}
+.selected {
+	background: #1B190F;
+}
+.selected a {
+	color: #ffffff;
+}
+.selected a .line {
+	display: block;
+}
+.roll-over1 {
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	right: 0px;
+	bottom: 0px;
+	background: #FFF;
+	display: none;
+}
+.roll-over2 {
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	right: 0px;
+	bottom: 0px;
+	background: #FFF;
+	display: none;
+}
+.text {
+	position: absolute;
+	width: 100%;
+	text-align: center;
+}
+.copyright {
+	width: 100%;
+	/* position: absolute;
+	bottom: 5px;
+	*/
+}
+.copyright p {
+	font-size: 12px;
+	color: #CCCCCC;
+	text-align: center;
+	margin-bottom: 0px;
+}
+.copyright p a {
+	color: #CCCCCC;
+	cursor: auto;
+	text-align: center;
+	text-decoration: none;
+	margin: 0px 5px;
+}
+.copyright p img {
+	position: relative;
+	top: -2px;
+	left: -1px;
+}

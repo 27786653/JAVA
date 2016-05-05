@@ -9,10 +9,6 @@ public class CommunityController {
 
 	
 	
-	@RequestMapping("/getCommunity")
-	public String getCommunity(){
-		//TODO
-		return  "Community/Communitymanagement";
-	}
+	
 	
 }

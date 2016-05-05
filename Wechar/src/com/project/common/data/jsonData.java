@@ -1,5 +1,6 @@
 package com.project.common.data;
 
+
 public class jsonData {
 
 	private String info;                //内容 
