@@ -1,0 +1,22 @@
+<!DOCTYPE HTML>
+<html lang="en-US">
+<head>
+<meta charset="UTF-8">
+<title>ueditor</title>
+</head>
+<body>
+	<script id="container" name="content" type="text/plain">
+    </script>
+	<!-- <script type="text/javascript" src="ueditor.config.js"></script>
+	<script type="text/javascript" src="ueditor.all.js"></script> -->
+	<script type="text/javascript">
+		var ue = UE.getEditor('container', {
+			fullscreen : true,
+			autoSyncData : false
+		});
+		ue.addListener('selectionchange', function() {
+			window.parent.uEditorContent = ue.getContent();
+		});
+	</script>
+</body>
+</html>

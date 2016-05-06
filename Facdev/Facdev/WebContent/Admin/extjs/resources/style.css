@@ -1,0 +1,153 @@
+.x-btn-default-small .x-btn-inner, 
+.x-btn-default-medium .x-btn-inner, 
+.x-btn-default-large .x-btn-inner, 
+.x-btn-default-toolbar-small .x-btn-inner, 
+.x-btn-default-toolbar-medium .x-btn-inner,
+.x-btn-default-toolbar-large .x-btn-inner, 
+.x-menu-item-text, 
+.x-html-editor-tb .x-font-select, 
+.x-panel-header-default, 
+.x-panel-header-text-default,
+.x-panel-header-default-framed, 
+.x-tip-header, 
+.x-tip-body, 
+.x-form-invalid-tip-body, 
+.x-tip-header-text, 
+.x-progress-text,
+.x-toolbar,
+.x-toolbar .x-form-item-label, 
+.x-toolbar .x-toolbar-text, 
+.x-window-header-text-default, 
+.x-tab-bar, 
+.x-tab button, 
+.x-grid-rowbody, 
+.x-grid-row .x-grid-cell, 
+.x-grid-group-title, 
+.x-grid-row-editor .x-form-field, 
+.x-grid-row-editor .x-form-display-field, 
+.x-form-invalid-under, 
+.x-fieldset-header, 
+.x-column-header, 
+.x-mask-msg div, 
+.x-btn-group-header-text-default-framed, 
+table.x-datepicker-inner a, 
+.x-monthpicker-item, 
+.x-dd-drag-ghost{font-size: 12px;}
+.x-column-header{text-shadow:0 0 0 rgba(255, 255, 255, 0.3);}
+
+.header { background: #7F99BE url(../../images/layout-browser-hd-bg.gif) repeat-x center;}
+.header h1 {font-size: 16px;color: #fff;padding: 3px 10px; font-family:"微软雅黑","黑体"}
+
+#CheckCode{ float:left;}
+.x-form-code{width:73px;height:20px;vertical-align:middle;cursor:pointer; float:left; margin-left:7px;}
+
+.win{background: url(../../images/menuPanel/ho2.gif) no-repeat !important;}
+
+.mydelete{background-image: url(../../images/core/delete.gif) !important;}
+.tabs{background-image: url(../../images/menuPanel/bulletin_manager.gif) !important;}
+.manage{background-image: url(../../images/menuPanel/admin.gif) !important;}
+.database{background-image: url(../../images/menuPanel/database.gif) !important;}
+.article{background-image: url(../../images/menuPanel/article1.gif) !important;}
+.folder{background-image: url(../../images/menuPanel/folder.png) !important;}
+.video{background-image: url(../../images/menuPanel/video.gif) !important;}
+.category{background-image: url(../../images/menuPanel/Link_Category.gif) !important;}
+.arrow{background-image: url(../../images/arrow.gif) !important;}
+.userinfo{background-image: url(../../images/menuPanel/userinfo.gif) !important;}
+.usereditinfo{background-image: url(../../images/menuPanel/usereditinfo.gif) !important;}
+.link_go{background-image: url(../../images/menuPanel/link_go.gif) !important;}
+.group_gear{background-image: url(../../images/menuPanel/group_gear.gif) !important;}
+.group_edit{background-image: url(../../images/menuPanel/group_edit.png) !important;}
+.group{background-image: url(../../images/menuPanel/group.gif) !important;}
+.Category1{background-image: url(../../images/menuPanel/Category1.gif) !important;}
+.Category{background-image: url(../../images/menuPanel/Category.gif) !important;}
+.fenlei{background-image: url(../../images/menuPanel/fenlei.gif) !important;}
+.mission{background-image: url(../../images/menuPanel/mission.gif) !important;}
+.zaxiang{background-image: url(../../images/menuPanel/zaxiang.gif) !important;}
+.link{background-image: url(../../images/menuPanel/link.gif) !important;}
+.Link_Category{background-image: url(../../images/menuPanel/Link_Category.gif) !important;}
+.passedit{background-image: url(../../images/winicon/pass_edit.gif) !important;}
+.monitoredit{background-image: url(../../images/menuPanel/monitor_edit.gif) !important;}
+.disk_multiple{background-image: url(../../images/menuPanel/disk_multiple.gif) !important;}
+.home{background-image: url(../../images/home2.gif) !important; }
+.icon-menu{background-image: url(../../images/menuPanel/sys2.gif) !important;}
+.calendar{background-image: url(../../images/menuPanel/calendar.gif) !important;}
+.calendar_view_week{background-image: url(../../images/menuPanel/calendar_view_week.gif) !important;}
+.search{background-image: url(../../images/search.gif) !important;}
+.edityes{background-image: url(../../images/drop-yes.gif) !important;}
+.one{background-image: url(../../images/myself/one.gif) !important;}
+.second{background-image: url(../../images/myself/second.gif) !important;}
+.three{background-image: url(../../images/myself/three.gif) !important;}
+.four{background-image: url(../../images/myself/four.gif) !important;}
+.five{background-image: url(../../images/myself/five.gif) !important;}
+.six{background-image: url(../../images/myself/six.gif) !important;}
+.all{background-image: url(../../images/myself/all.gif) !important;}
+.bull-add{background-image: url(../../images/winicon/bull_add.gif) !important;}
+.mission-add{background-image: url(../../images/winicon/mission_add.gif) !important;}
+.submenus_print{background-image: url(../../images/print.gif) !important;}
+.icon-mission{background-image: url(../../images/menuPanel/icon_mission.gif) !important;}
+.icon-doc{background-image: url(../../images/myself/document.gif) !important;}
+.icon-info{background-image: url(../../images/myself/informationRegis.gif) !important;}
+.toMax{background-image: url(../../images/menuPanel/toMax.gif) !important;}
+.toMin{background-image: url(../../images/menuPanel/toMin.gif) !important;}
+.jiedai{background-image: url(../../images/menuPanel/jiedai.gif) !important;}
+/* 目录图标 */
+.searchAll{background-image: url(../../images/menuPanel/statistics.gif) !important;}
+.boxManage{background-image: url(../../images/menuPanel/boxManage.gif) !important;}
+.checkResult{background-image: url(../../images/menuPanel/checkResult.gif) !important;}
+.checkRegis{background-image: url(../../images/menuPanel/checkRegis.gif) !important;}
+.pass_edit{background-image: url(../../images/winicon/pass_edit.gif) !important;}
+.dataInput{background-image: url(../../images/menuPanel/dataInput.gif) !important;}
+.dataOutput{background-image: url(../../images/menuPanel/dataOutput.gif) !important;}
+.dataBorrowReturn{background-image: url(../../images/menuPanel/dataBorrowReturn.gif) !important;}
+.checkData{background-image: url(../../images/menuPanel/checkData.gif) !important;}
+.createQRcode{background-image: url(../../images/menuPanel/createQRcode.gif) !important;}
+.printQRcode{background-image: url(../../images/menuPanel/printQRcode.gif) !important;}
+.checkLog{background-image: url(../../images/menuPanel/checkLog.gif) !important;}
+.todayTask{background-image: url(../../images/menuPanel/todayTask.gif) !important;}
+.memberManage{background-image: url(../../images/menuPanel/memberManage.gif) !important;}
+.roleManage{background-image: url(../../images/menuPanel/roleManage.gif) !important;}
+.dataTypeManage{background-image: url(../../images/menuPanel/dataTypeManage.gif) !important;}
+.bulletin_manager{background-image: url(../../images/menuPanel/bulletin_manager.gif) !important;}
+.qingjia{background-image: url(../../images/menuPanel/qingjia.gif) !important;}
+.tongxun{background-image: url(../../images/menuPanel/tongxun.gif) !important;}
+.monitor_edit{background-image: url(../../images/menuPanel/monitor_edit.gif) !important;}
+/*资料借出*/
+.printTable{background-image: url(../../images/menuPanel/printTable.gif) !important;}
+.printBill{background-image: url(../../images/menuPanel/printBill.gif) !important;}
+.printForm{background-image: url(../../images/menuPanel/printForm.gif) !important;}
+.makeSure{background-image: url(../../images/menuPanel/makeSure.gif) !important;}
+/*资料查询*/
+.dataDetail{background-image: url(../../images/menuPanel/dataDetail.gif) !important;}
+.dataRegis{background-image: url(../../images/menuPanel/dataRegis.gif) !important;}
+.levae_add{background-image: url(../../images/winicon/levae_add.gif) !important;}
+
+.checkHistory{background-image: url(../../images/menuPanel/checkHistory.gif) !important;}
+
+.stop{background-image: url(../../images/stop.gif) !important;}
+.icon-edit {
+    background-image: url(../../images/core/edit.gif) !important;
+}
+.icon-user {
+    background-image: url(../../images/user.gif) !important;
+}
+
+.icon-add {
+    background-image: url(../../images/add.png) !important;
+}
+
+.icon-delete {
+    background-image: url(../../images/delete.png) !important;
+}
+
+.x-ie6 .icon-user {
+    background-image: url(../../images/user.gif) !important;
+}
+
+.x-ie6 .icon-add {
+    background-image: url(../../images/add.gif) !important;
+}
+
+.x-ie6 .icon-delete {
+    background-image: url(../../images/delete.gif) !important;
+}
+.icon-refresh{background-image: url(../../images/core/refresh.gif) !important;}

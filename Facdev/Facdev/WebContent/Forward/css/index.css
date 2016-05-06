@@ -1,0 +1,272 @@
+#bigImg{
+	height:324px;
+	overflow: hidden;	
+	position: relative;
+}
+#bigImg ul.imageList{
+	width:8000px;
+	height: 100%;
+}
+#bigImg ul.imageList li{
+	float: left;
+	width: 1000px;
+	overflow: hidden;
+	height:100%;
+	background-color: #eee;
+}
+
+#bigImg ul.btnList{
+	position: absolute;
+	height: 10px;
+	text-align: right;
+	bottom: 15px;
+	right: 15px;
+}
+#bigImg ul.btnList li{
+	height: 10px;
+	width: 10px;
+	background: url("../images/bigImgBtnList.png") no-repeat center -20px;
+	float: left;
+	margin-left: 10px;
+	cursor: pointer;
+	transition: all .3s ease 0s;
+	-webkit-transition: all .3s ease 0s;
+	-moz-transition: all .3s ease 0s;
+	-ms-transition: all .3s ease 0s;
+	-o-transition: all .3s ease 0s;
+}
+#bigImg ul.btnList li.active{
+	background-position: center 0px;
+}
+#bigImg .leftBtn,
+#bigImg .rightBtn{
+	position: absolute;
+	top:0px;
+	bottom:0px;
+	left: 0px;
+	margin:auto;
+	height: 88px;
+	width: 35px;
+	background:url("../images/leftBtn.png") no-repeat -55px 0px;
+	cursor: pointer;
+	display: none;
+}
+#bigImg:hover .leftBtn,#bigImg:hover .rightBtn{
+	display: block;
+}
+#bigImg .leftBtn:hover,
+#bigImg .rightBtn:hover{
+	background-position: 0px 0px;
+}
+#bigImg .rightBtn{
+	left: auto;
+	right: 0px;
+	background:url("../images/rightBtn.png") no-repeat -55px 0px;
+}
+
+#content{
+	overflow: hidden;
+}
+.idx-section{
+	background-color:#fafafa;
+	float:left;
+	border:1px solid #f0f0f0;
+}
+.idx-section.noBorder{
+	border:none;
+}
+.idx-section .titleBar,
+.idx-section .titleBar2{
+	overflow: hidden;
+	height:32px;
+}
+.idx-section .titleBar .text{
+	font-size:15px;
+	color:#333;
+}
+.idx-section .titleBar *,
+.idx-section .titleBar2 *{
+	float:left;
+}
+#introduce{
+	padding:10px 20px 12px 20px;
+	width:490px;
+	margin:15px 0px 0px 0px;
+}
+.idx-section .titleBar{
+	background: url("../images/idx_icon.png") no-repeat 4px 5px;
+	padding-left: 32px;
+	line-height: 32px;
+}
+.idx-section .titleBar .blueline{
+	height:1px;
+	background-color: #0D6CA6;
+	width: 256px;
+	margin:17px 0px 5px 8px;
+}
+.idx-section .titleBar .dott{
+	margin-top:12px;
+}
+#introduce p{
+	font-size: 14px;
+	color:#333;
+	line-height: 28px;
+	padding:2px 10px 0px 10px;
+}
+#notice{
+	float:right;
+	width: 490px;
+	overflow: hidden;
+	margin-top: 15px;
+}
+.idx-section .titleBar2{
+	position: relative;
+	border-bottom: 1px solid #0D6CA6;
+	overflow: hidden;
+}
+.idx-section .titleBar2 .text{
+	height:32px;
+	line-height: 32px;
+	padding:0px 10px 0px 36px;
+	color: #fff;
+	display: inline-block;
+	font-size:15px;
+}
+.idx-section .titleBar2 .trangle{
+	width: 0;
+    height: 0;
+    border-bottom: 32px solid #0D6CA6;
+    border-right: 16px solid transparent;
+}
+/* .idx-section .titleBar2 .trangle.no{
+	border-bottom: 32px solid #bbb;
+} */
+.idx-section .titleBar2 .text{
+	background: #0D6CA6 url("../images/idx_icon.png") no-repeat 10px -145px;
+}
+/* .idx-section .titleBar2 .text.no{
+	background: #bbb url("../images/idx_icon.png") no-repeat 10px -243px;
+	color:#444;
+} */
+.idx-section .moreBtn{
+	float: right;
+	font-size: 12px;
+	margin:8px;
+	line-height: 17px;
+}
+#news{
+	float:left;
+	width: 680px;
+	overflow: hidden;
+	margin-top: 15px;
+}
+/* #news_industry.active{
+	position: absolute;
+} */
+#news_industry,#news_work{
+	position: absolute;
+	top:0px;
+	left:0px;
+	z-index: 1;
+}
+#news_industry .text,#news_work .text{
+	background: #ccc url("../images/idx_icon.png") no-repeat;
+	color:#666;
+}
+#news_industry .trangle,#news_work .trangle{
+	border-bottom-color:#ccc;
+}
+#news_industry .text{
+	background-position: 11px -242px;
+	cursor: pointer;
+}
+#news_work{
+	margin-left: 106px;
+}
+#news_work .text{
+	background-position: 11px -342px;
+	cursor: pointer;
+}
+#news_industry.active,#news_work.active{
+	z-index: 9;
+}
+#news_industry.active .text,#news_work.active .text{
+	background: #0D6CA6 url("../images/idx_icon.png") no-repeat;
+	
+	color:#fff;
+}
+#news_industry.active .trangle,#news_work.active .trangle{
+	border-bottom-color:#0D6CA6;
+}
+#news_industry.active .text{
+	background-position: 11px -192px;
+}
+#news_work.active .text{
+	background-position: 11px -292px;
+}
+
+#download{
+	width: 300px;
+	margin-top: 15px;
+	float:right;
+	padding-top: 5px;
+}
+#download .titleBar{
+	background-position: 10px -391px;
+}
+#download ul.newsList{
+	padding-top: 2px;
+}
+#download ul.newsList li a .title{
+	width: 100%;
+}
+#law{
+	float:left;
+	width: 490px;
+	overflow: hidden;
+	margin-top: 15px;
+}
+#law .titleBar2 .text{
+	background-position: 10px -442px
+}
+#emergency{
+	float:right;
+	width: 490px;
+	overflow: hidden;
+	margin-top: 15px;
+}
+#emergency .titleBar2 .text{
+	background-position: 11px -494px
+}
+#link{
+	width: 1000px;
+	margin-top:15px;
+	background: #fff;
+}
+#link .blueline{
+	width: 800px;
+}
+#link .linkList{
+	overflow: hidden;
+}
+#link .linkList .linkBlock{
+	width: 25%;
+	overflow: hidden;
+	float: left;
+	margin-top:5px;
+}
+#link .linkList .linkBlock a{
+	display: block;
+	color: #333;
+	padding:4px 10px 5px 25px;
+	font-size: 12px;
+	line-height: 18px;
+	overflow: hidden;
+	background: url("../images/idx_icon.png") no-repeat 10px -90px;
+}
+#link .linkList .linkBlock a:hover{
+	color:#0D6CA6;
+}
+#link .titleBar{
+	background-position: 3px -542px;
+}

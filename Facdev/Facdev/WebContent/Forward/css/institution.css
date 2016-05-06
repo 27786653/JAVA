@@ -1,0 +1,23 @@
+#content{
+	padding:30px;
+	overflow: hidden;
+}
+.detail{
+	margin-top:25px;
+}
+.subContent{
+	padding:14px 14px 14px 0px;
+	font-size: 13px;
+	color: #333;
+	line-height: 32px;
+}
+.themeTitle{
+	margin-top:15px;
+}
+.subContent p{
+	padding-left:20px;
+}
+.subContent .font-theme{
+	padding-left:20px;
+	background: url("../images/idx_icon.png") no-repeat 5px -87px;
+}

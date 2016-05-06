@@ -1,0 +1,79 @@
+var idata = {
+  "sysInfo": {
+    "errLogAllowedRoles": "administrators"
+  },
+  "myInfo": {
+    "curIp": "14.212.220.131",
+    "loginName": "administrator",
+    "prevLoginIp": "14.212.220.131",
+    "prevLoginDate": "2014-02-20 15:00:28",
+    "buttonAlign": "center",
+    "actions": [
+      "RoleViewAdd",
+      "RoleViewEdit",
+      "RoleViewDelete",
+      "PermissionAdd",
+      "PermissionEdit",
+      "PermissionDelete",
+      "TeamAdd",
+      "TeamEdit",
+      "TeamDelete",
+      "UserAdd",
+      "UserEdit",
+      "UserDelete",
+      "UserExport",
+      "RoleActionAdd",
+      "RoleActionEdit",
+      "RoleActionDelete",
+      "MenuViewAdd",
+      "MenuViewEdit",
+      "MenuViewDelete",
+      "RoleActionExport",
+      "RoleExport",
+      "LogExport",
+      "MessageAdd",
+      "MessageDelete",
+      "MessageMultiSend",
+      "MessageGroupSend",
+      "RoleSaveRoleAction",
+      "NewsColumnAdd",
+      "NewsColumnEdit",
+      "NewsColumnDelete",
+      "NewsAdd",
+      "NewsEdit",
+      "SysConfigAdd",
+      "SysConfigEdit",
+      "SysConfigDelete",
+      "RoleAssignColumns"
+    ],
+    "roles": [
+      "administrators"
+    ],
+    "roleColumns": {
+      "Loglogin": [
+        "AddTime",
+        "IPAddress",
+        "Message",
+        "UserName"
+      ],
+      "News": [
+        "AddName",
+        "AddTime",
+        "IsEnable",
+        "IsTop",
+        "LastEditName",
+        "LastEditTime",
+        "Source",
+        "Tags",
+        "Title"
+      ],
+      "RoleMenu": [
+        "IconClass",
+        "MenuButtons",
+        "MenuLink",
+        "MenuName",
+        "SortOrder"
+      ]
+    }
+  }
+}
