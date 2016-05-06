@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
+<struts>
+	<package name="default" extends="struts-default">
+		<global-results>
+			<result name="login">/jsp/users/login.jsp</result>
+		</global-results>
+	
+	
+		<action name="ea_*_*" class="employeeAction" method="{1}">
+		<result >{2}.jsp</result>
+		<result name="input">/jsp/error/500.jsp</result>
+		</action>
+		
+		<action name="ua_*_*" class="usersAction" method="{1}">
+		<result >{2}.jsp</result>
+		<result name="input">/jsp/error/500.jsp</result>
+		</action>
+		
+		<action name="na_*_*" class="noteAction" method="{1}">
+		<result >{2}.jsp</result>
+		<result name="input">/jsp/error/500.jsp</result>
+		</action>
+		
+		
+		<action name="la_*_*" class="leaveAction" method="{1}">
+		<result >{2}.jsp</result>
+		<result name="input">/jsp/error/500.jsp</result>
+		</action>
+		
+		
+		<action name="wma_*_*" class="webMangerAction" method="{1}">
+		<result >{2}.jsp</result>
+		<result name="input">/jsp/error/500.jsp</result>
+		</action>
+	
+		<action name="fda_*_*" class="fileDetileAction" method="{1}">
+		<result >{2}.jsp</result>
+		<result name="input">/jsp/error/500.jsp</result>
+		</action>
+		
+		<action name="ca_*_*" class="carAction" method="{1}">
+		<result >{2}.jsp</result>
+		<result name="input">/jsp/error/500.jsp</result>
+		</action>
+		
+	<action name="bda_*_*" class="boardroomAction" method="{1}">
+		<result >{2}.jsp</result>
+		<result name="input">/jsp/error/500.jsp</result>
+		</action>
+		
+	</package>
+	
+</struts>    

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd"
+	default-autowire="byName"
+	>
+<bean name="eb" class="com.lsl.bizimpl.EmployeeBizimpl"/>
+<bean name="ub" class="com.lsl.bizimpl.UsersBizimpl"/>
+<bean name="ab" class="com.lsl.bizimpl.AnnouncementBizimpl"/>
+<bean name="nb" class="com.lsl.bizimpl.NoteBizimpl"/>
+<bean name="lb" class="com.lsl.bizimpl.LeaveBizimpl"/>
+<bean name="wmb" class="com.lsl.bizimpl.WebMangerBizimpl"/>
+<bean name="fdb" class="com.lsl.bizimpl.FileDetileBizimpl"/>
+<bean name="cb" class="com.lsl.bizimpl.CarBizimpl"/>
+<bean name="bdb" class="com.lsl.bizimpl.BoardroomBizimpl"/>
+</beans>

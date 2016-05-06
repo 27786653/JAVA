@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+		
+		
+		<bean name="ed" class="com.lsl.daoimpl.EmployeeDaoimpl">
+		<property name="sessionFactory"  ref="sessionFactory"/>
+		</bean>
+
+	<bean name="ud" class="com.lsl.daoimpl.UsersDaoimpl">
+		<property name="sessionFactory"  ref="sessionFactory"/>
+		</bean>
+
+
+		<bean name="ad" class="com.lsl.daoimpl.AnnouncementDaoimpl">
+		<property name="sessionFactory"  ref="sessionFactory"/>
+		</bean>
+		
+		<bean name="nd" class="com.lsl.daoimpl.NoteDaoimpl">
+		<property name="sessionFactory"  ref="sessionFactory"/>
+		</bean>
+		
+		<bean name="ld" class="com.lsl.daoimpl.LeaveDaoimpl">
+		<property name="sessionFactory"  ref="sessionFactory"/>
+		</bean>
+
+<bean name="wmd" class="com.lsl.daoimpl.WebMangerDaoimpl">
+		<property name="sessionFactory"  ref="sessionFactory"/>
+		</bean>
+		
+		
+		<bean name="fdd" class="com.lsl.daoimpl.FileDetileDaoimpl">
+		<property name="sessionFactory"  ref="sessionFactory"/>
+		</bean>
+		
+		
+		<bean name="cd" class="com.lsl.daoimpl.CarDaoimpl">
+		<property name="sessionFactory"  ref="sessionFactory"/>
+		</bean>
+		
+			<bean name="bdd" class="com.lsl.daoimpl.BoardroomDaoimpl">
+		<property name="sessionFactory"  ref="sessionFactory"/>
+		</bean>
+		
+</beans>

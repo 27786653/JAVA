@@ -1,0 +1,435 @@
+﻿$axure.loadCurrentPage({
+  "url":"日历查询.html",
+  "generationDate":new Date(1386565829450.84),
+  "isCanvasEnabled":false,
+  "variables":["OnLoadVariable",
+"aaaaaaaa"],
+  "page":{
+    "packageId":"5cb16f4763f94fb6aa4db154ea6d6feb",
+    "type":"Axure:Page",
+    "name":"日历查询",
+    "notes":{
+},
+    "style":{
+      "baseStyle":"627587b6038d43cca051c114ac41ad32",
+      "pageAlignment":"near",
+      "fill":{
+        "fillType":"solid",
+        "color":0xFFFFFFFF},
+      "image":null,
+      "imageHorizontalAlignment":"near",
+      "imageVerticalAlignment":"near",
+      "imageRepeat":"",
+      "favicon":null,
+      "sketchFactor":"0",
+      "colorStyle":"appliedColor",
+      "fontName":"Applied Font",
+      "borderWidth":"0"},
+    "adaptiveStyles":{
+},
+    "interactionMap":{
+},
+    "diagram":{
+      "objects":[{
+          "id":"1a2ec3bb02544049b22988f089ff844c",
+          "label":"",
+          "type":"buttonShape",
+          "styleType":"paragraph",
+          "visible":true,
+          "style":{
+            "fontName":"'Applied Font Regular', 'Applied Font'",
+            "location":{
+              "x":225,
+              "y":24},
+            "size":{
+              "width":130,
+              "height":16}},
+          "adaptiveStyles":{
+},
+          "objects":[{
+              "id":"64ad6a3772e8405f8f2311c5446d2c61",
+              "label":"",
+              "isContained":true,
+              "type":"richTextPanel",
+              "styleType":"paragraph",
+              "visible":true,
+              "style":{
+                "fontName":"'Applied Font Regular', 'Applied Font'",
+                "location":{
+                  "x":225,
+                  "y":24},
+                "size":{
+                  "width":130,
+                  "height":16}},
+              "adaptiveStyles":{
+}}],
+          "images":{
+            "normal~":"resources/images/transparent.gif"}},
+{
+          "id":"fbfa774dff564cbd98d83a005f96c371",
+          "label":"",
+          "type":"imageBox",
+          "styleType":"imageBox",
+          "visible":true,
+          "style":{
+            "fontName":"'Applied Font Regular', 'Applied Font'",
+            "baseStyle":"627587b6038d43cca051c114ac41ad32",
+            "location":{
+              "x":202,
+              "y":22},
+            "size":{
+              "width":16,
+              "height":16}},
+          "adaptiveStyles":{
+},
+          "objects":[{
+              "id":"b477b4c42f40484f8de880596c317ef2",
+              "label":"",
+              "isContained":true,
+              "type":"richTextPanel",
+              "styleType":"paragraph",
+              "visible":true,
+              "style":{
+                "fontName":"'Applied Font Regular', 'Applied Font'",
+                "baseStyle":"627587b6038d43cca051c114ac41ad32",
+                "location":{
+                  "x":202,
+                  "y":22},
+                "size":{
+                  "width":16,
+                  "height":16}},
+              "adaptiveStyles":{
+}}],
+          "images":{
+            "normal~":"images/常用网址/u89.png"}},
+{
+          "id":"58efedf64a1248cb87c147769d9aa24e",
+          "label":"",
+          "type":"buttonShape",
+          "styleType":"buttonShape",
+          "visible":true,
+          "style":{
+            "fontName":"'Applied Font Bold', 'Applied Font'",
+            "fontWeight":"bold",
+            "foreGroundFill":{
+              "fillType":"solid",
+              "color":0xFFFFFFFF,
+              "opacity":1},
+            "fill":{
+              "fillType":"linearGradient",
+              "colors":[{
+                  "color":0xFF3969A5},
+{
+                  "color":0xFF3969A5},
+{
+                  "color":0xFF5A96C6},
+{
+                  "color":0xFF5A96C6}]},
+            "location":{
+              "x":730,
+              "y":390},
+            "size":{
+              "width":80,
+              "height":30},
+            "cornerRadiusTopLeft":"14"},
+          "adaptiveStyles":{
+},
+          "objects":[{
+              "id":"89f43211f5ba4c3fa338ca073a29623e",
+              "label":"",
+              "isContained":true,
+              "type":"richTextPanel",
+              "styleType":"paragraph",
+              "visible":true,
+              "style":{
+                "fontName":"'Applied Font Bold', 'Applied Font'",
+                "fontWeight":"bold",
+                "foreGroundFill":{
+                  "fillType":"solid",
+                  "color":0xFFFFFFFF,
+                  "opacity":1},
+                "fill":{
+                  "fillType":"linearGradient",
+                  "colors":[{
+                      "color":0xFF3969A5},
+{
+                      "color":0xFF3969A5},
+{
+                      "color":0xFF5A96C6},
+{
+                      "color":0xFF5A96C6}]},
+                "location":{
+                  "x":730,
+                  "y":390},
+                "size":{
+                  "width":80,
+                  "height":30},
+                "cornerRadiusTopLeft":"14"},
+              "adaptiveStyles":{
+}}],
+          "interactionMap":{
+            "onClick":{
+              "description":"OnClick",
+              "cases":[{
+                  "description":"用例 1",
+                  "isNewIfGroup":false,
+                  "actions":[{
+                      "action":"linkWindow",
+                      "description":"在 当前窗口 打开 我的桌面",
+                      "target":{
+                        "targetType":"page",
+                        "url":"我的桌面.html",
+                        "includeVariables":true},
+                      "linkType":"current"}]}]}},
+          "tabbable":true,
+          "images":{
+            "normal~":"images/日历查询/u4.png"}},
+{
+          "id":"4fd2488f1ac5415aafdfd4dba2c23a29",
+          "label":"",
+          "type":"buttonShape",
+          "styleType":"buttonShape",
+          "visible":true,
+          "style":{
+            "fontName":"'Applied Font Bold', 'Applied Font'",
+            "fontSize":"15px",
+            "fontWeight":"bold",
+            "verticalAlignment":"top",
+            "foreGroundFill":{
+              "fillType":"solid",
+              "color":0xFFFFFFFF,
+              "opacity":1},
+            "fill":{
+              "fillType":"linearGradient",
+              "colors":[{
+                  "color":0xFF396DAD},
+{
+                  "color":0xFF396DAD},
+{
+                  "color":0xFF315173},
+{
+                  "color":0xFF315173}]},
+            "paddingTop":"0",
+            "paddingBottom":"0",
+            "location":{
+              "x":733,
+              "y":395},
+            "size":{
+              "width":20,
+              "height":20},
+            "borderWidth":"2",
+            "borderFill":{
+              "fillType":"linearGradient",
+              "colors":[{
+                  "color":0xFF396DAD},
+{
+                  "color":0xFF396DAD},
+{
+                  "color":0xFF5A96C6},
+{
+                  "color":0xFF5A96C6}]}},
+          "adaptiveStyles":{
+},
+          "objects":[{
+              "id":"55c517901ec6416b8d2ba8c96295f2ec",
+              "label":"",
+              "isContained":true,
+              "type":"richTextPanel",
+              "styleType":"paragraph",
+              "visible":true,
+              "style":{
+                "fontName":"'Applied Font Bold', 'Applied Font'",
+                "fontSize":"15px",
+                "fontWeight":"bold",
+                "verticalAlignment":"top",
+                "foreGroundFill":{
+                  "fillType":"solid",
+                  "color":0xFFFFFFFF,
+                  "opacity":1},
+                "fill":{
+                  "fillType":"linearGradient",
+                  "colors":[{
+                      "color":0xFF396DAD},
+{
+                      "color":0xFF396DAD},
+{
+                      "color":0xFF315173},
+{
+                      "color":0xFF315173}]},
+                "paddingTop":"0",
+                "paddingBottom":"0",
+                "location":{
+                  "x":733,
+                  "y":395},
+                "size":{
+                  "width":20,
+                  "height":20},
+                "borderWidth":"2",
+                "borderFill":{
+                  "fillType":"linearGradient",
+                  "colors":[{
+                      "color":0xFF396DAD},
+{
+                      "color":0xFF396DAD},
+{
+                      "color":0xFF5A96C6},
+{
+                      "color":0xFF5A96C6}]}},
+              "adaptiveStyles":{
+}}],
+          "images":{
+            "normal~":"images/日历查询/u6.png"}},
+{
+          "id":"a7010014838f43df84fd46a52f1d26b5",
+          "label":"",
+          "type":"buttonShape",
+          "styleType":"paragraph",
+          "visible":true,
+          "style":{
+            "fontName":"'Applied Font Bold', 'Applied Font'",
+            "fontSize":"11px",
+            "fontWeight":"bold",
+            "horizontalAlignment":"center",
+            "foreGroundFill":{
+              "fillType":"solid",
+              "color":0xFFFFFFFF,
+              "opacity":1},
+            "location":{
+              "x":451,
+              "y":439},
+            "size":{
+              "width":40,
+              "height":14},
+            "rotation":"0",
+            "textRotation":"0"},
+          "adaptiveStyles":{
+},
+          "objects":[{
+              "id":"f239ba445bd54b0ca4668c18bbcd26c3",
+              "label":"",
+              "isContained":true,
+              "type":"richTextPanel",
+              "styleType":"paragraph",
+              "visible":true,
+              "style":{
+                "fontName":"'Applied Font Bold', 'Applied Font'",
+                "fontSize":"11px",
+                "fontWeight":"bold",
+                "horizontalAlignment":"center",
+                "foreGroundFill":{
+                  "fillType":"solid",
+                  "color":0xFFFFFFFF,
+                  "opacity":1},
+                "location":{
+                  "x":451,
+                  "y":439},
+                "size":{
+                  "width":40,
+                  "height":14},
+                "rotation":"0",
+                "textRotation":"0"},
+              "adaptiveStyles":{
+}}],
+          "images":{
+            "normal~":"resources/images/transparent.gif"}},
+{
+          "id":"b9c303f670c741888698346984367137",
+          "label":"",
+          "type":"imageBox",
+          "styleType":"imageBox",
+          "visible":true,
+          "style":{
+            "fontName":"'Applied Font Regular', 'Applied Font'",
+            "location":{
+              "x":380,
+              "y":180},
+            "size":{
+              "width":50,
+              "height":50}},
+          "adaptiveStyles":{
+},
+          "objects":[{
+              "id":"8065c2757992460684e027050e84a68c",
+              "label":"",
+              "isContained":true,
+              "type":"richTextPanel",
+              "styleType":"paragraph",
+              "visible":true,
+              "style":{
+                "fontName":"'Applied Font Regular', 'Applied Font'",
+                "location":{
+                  "x":380,
+                  "y":180},
+                "size":{
+                  "width":50,
+                  "height":50}},
+              "adaptiveStyles":{
+}}],
+          "images":{
+            "normal~":"images/日历查询/u10.png"}},
+{
+          "id":"32e8f1c066864b20b23b7d6334951f05",
+          "label":"",
+          "type":"imageBox",
+          "styleType":"imageBox",
+          "visible":true,
+          "style":{
+            "fontName":"'Applied Font Regular', 'Applied Font'",
+            "location":{
+              "x":236,
+              "y":57},
+            "size":{
+              "width":564,
+              "height":316}},
+          "adaptiveStyles":{
+},
+          "objects":[{
+              "id":"e44112b7077e4cc784e0abab870a5b86",
+              "label":"",
+              "isContained":true,
+              "type":"richTextPanel",
+              "styleType":"paragraph",
+              "visible":true,
+              "style":{
+                "fontName":"'Applied Font Regular', 'Applied Font'",
+                "location":{
+                  "x":236,
+                  "y":57},
+                "size":{
+                  "width":564,
+                  "height":316}},
+              "adaptiveStyles":{
+}}],
+          "images":{
+            "normal~":"images/日历查询/u12.png"}}]}},
+  "masters":{
+},
+  "objectPaths":{
+    "1a2ec3bb02544049b22988f089ff844c":{
+      "scriptId":"u0"},
+    "64ad6a3772e8405f8f2311c5446d2c61":{
+      "scriptId":"u1"},
+    "fbfa774dff564cbd98d83a005f96c371":{
+      "scriptId":"u2"},
+    "b477b4c42f40484f8de880596c317ef2":{
+      "scriptId":"u3"},
+    "58efedf64a1248cb87c147769d9aa24e":{
+      "scriptId":"u4"},
+    "89f43211f5ba4c3fa338ca073a29623e":{
+      "scriptId":"u5"},
+    "4fd2488f1ac5415aafdfd4dba2c23a29":{
+      "scriptId":"u6"},
+    "55c517901ec6416b8d2ba8c96295f2ec":{
+      "scriptId":"u7"},
+    "a7010014838f43df84fd46a52f1d26b5":{
+      "scriptId":"u8"},
+    "f239ba445bd54b0ca4668c18bbcd26c3":{
+      "scriptId":"u9"},
+    "b9c303f670c741888698346984367137":{
+      "scriptId":"u10"},
+    "8065c2757992460684e027050e84a68c":{
+      "scriptId":"u11"},
+    "32e8f1c066864b20b23b7d6334951f05":{
+      "scriptId":"u12"},
+    "e44112b7077e4cc784e0abab870a5b86":{
+      "scriptId":"u13"}}});

@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:c="http://www.springframework.org/schema/c"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.1.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.1.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.1.xsd">
+		
+		<bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+		<property name="location" value="classpath:database.properties"></property>
+		</bean>
+		<!--  hibernate的整合 -->
+		<!-- 配置datasource  -->
+		<bean class="org.apache.commons.dbcp.BasicDataSource" id="basicDataSource">
+		<property name="driverClassName" value="${driverClassName}"></property>
+		<property name="url" value="${url}"></property>
+		<property name="username" value="${username}"></property>
+		<property name="password" value="${password}"></property>
+		</bean>
+
+		<!-- 配置sessionfactory -->
+			<bean class="org.springframework.orm.hibernate3.LocalSessionFactoryBean" id="sessionFactory">
+			<property name="dataSource" ref="basicDataSource"></property>
+			<property name="hibernateProperties">
+				<props>
+				<prop key="hibernate.show_sql">true</prop>
+				<prop key="hibernate.dialect">org.hibernate.dialect.SQLServerDialect</prop>
+				</props>
+			
+			</property>
+			<property name="mappingDirectoryLocations">
+			<list>
+				<value>classpath:com/lsl/entity/</value>
+			</list>
+			</property>
+			</bean>
+			
+
+		<!-- 配置事务管理器 -->
+		<bean class="org.springframework.orm.hibernate3.HibernateTransactionManager" id="transactionManager">
+			<property name="sessionFactory" ref="sessionFactory"></property>
+		 </bean>
+
+
+		<!-- 事务管理器方法说明 -->
+		<tx:advice id="txAdvice" transaction-manager="transactionManager">
+		<tx:attributes>
+			<tx:method name="add*" propagation="REQUIRED"/>
+			<tx:method name="update*" propagation="REQUIRED"/>
+			<tx:method name="delete*" propagation="REQUIRED"/>
+			<tx:method name="*" read-only="true"/>
+		</tx:attributes>
+		</tx:advice>
+		
+		
+		<!-- 配置事务的aop -->
+		<aop:config>
+		<aop:pointcut expression="execution(* com.lsl.biz.*.*(..))" id="serviceMethod"/>
+			<aop:advisor advice-ref="txAdvice" pointcut-ref="serviceMethod"/>
+		</aop:config>
+		
+		
+		
+	
+	
+	
+		
+</beans>

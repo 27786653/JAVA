@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd"
+	default-autowire="byName"
+	>
+<bean id="employeeAction" class="com.lsl.action.EmployeeAction"></bean>
+<bean id="usersAction" class="com.lsl.action.UsersAction"></bean>
+<bean id="announcementAction" class="com.lsl.action.AnnouncementAction"></bean>
+<bean id="noteAction" class="com.lsl.action.NoteAction"></bean>
+<bean id="leaveAction" class="com.lsl.action.LeaveAction"></bean>
+<bean id="webMangerAction" class="com.lsl.action.WebMangerAction"></bean>
+<bean id="fileDetileAction" class="com.lsl.action.FileDetileAction"></bean>
+<bean id="carAction" class="com.lsl.action.CarAction"></bean>
+<bean id="boardroomAction" class="com.lsl.action.BoardroomAction"></bean>
+</beans>

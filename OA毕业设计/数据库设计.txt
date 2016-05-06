@@ -1,0 +1,297 @@
+部门表     dept
+
+d_id       序号
+d_name     名称
+d_desc     描述
+
+职位表     position
+
+p_id       序号
+p_name     名称
+
+员工档案表 employee
+
+e_id         序号
+e_code       编号
+e_name       名称
+e_sex        性别
+e_joinDate   加入日期 
+e_birthDate  生日日期
+e_address    现住地址
+e_email      邮箱
+e_phone      手机
+e_desc       描述
+d_id         部门外键
+p_id         职位外键
+
+用户信息表  Users
+ 
+u_id         序号
+u_name       名称
+u_pwd        密码
+e_id         档案表外键、
+u_state      用户状态（是否在线）
+
+公告表 announcement
+
+an_id       序号
+an_title    标题
+an_content  内容
+an_datetime 创建时间
+u_id  	    创建人
+an_lookCount浏览次数
+an_state    0_新创建 1_删除
+an_level    提示级别  0_一般 1_紧急
+an_readed   是否已读  0未读  1_已读
+
+
+
+
+便签表  note
+
+n_id         序号
+u_id         创建人
+n_title      标题
+n_content    内容
+n_createTime 创建时间
+
+
+请假表        leave
+l_id             序号
+u_id             请假人
+l_startTime      开始时间
+l_endTime        结束时间
+l_dayCount       请假天数
+l_type	         请假类型（事假，出差）
+l_desc           请假理由描述
+a_id             审核结果
+
+
+网站     webManger 
+w_id      序号
+u_id      属于人
+w_name    网站名称
+w_address 网站
+
+
+日程表    schedule
+s_id         序号
+s_startTime  开始时间
+s_endTime    结束时间
+s_place      地点
+s_title      主题
+s_create_eid 创建人
+s_IsShare     是否公开
+s_Isdept     是否是部门日程
+s_content    内容
+
+
+日程预约表 schedule_with
+sw_id        序号
+s_id         日程表id
+s_with_eid   预约他人
+
+
+
+
+
+
+---------------------------------
+文件路径:
+file/recycle bin/  回收站	
+file/Dept Share/   部门文件夹
+file/Users /       用户文件夹
+
+
+文档表     File
+f_id      序号
+u_id      创建人
+f_createTime 创建时间
+f_name    名称
+f_Isdept  是否是部门的文件夹
+d_id      可以为空
+
+
+文档详细表   file_detile
+fd_id      序号
+fd_size    文件大小
+f_id       文档表外键
+f_type     文件类型外键
+f_IsDelete 是否删除（回收站）  0是未删 1是删除  
+fd_parend  父类
+f_url      文件路径
+
+
+文档类型    file_type  文件夹，文件(类型)
+ft_id      序号 
+ft_name    名称      （doc,ppt,xls,xlsx,）
+
+
+部门文件申请表（图书申请表）  fileLorn
+fl_id      序号
+u_id       申请人
+f_time     申请时间
+f_id       申请的文件
+a_id       审核结果
+
+---------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+会议室        boardroom
+b_id         序号
+b_code       会议室名称
+b_desc       会议室描述
+b_state      会议室状态
+ 
+
+会议室预订记录   boardroomManger
+bd_id         序号
+b_id
+bd_createTime 预定时间
+bd_endTime    结束时间
+bd_startTime  开始时间 
+bd_uid        预订人
+bdt_id        外键
+a_id          审核记录
+
+
+
+会议类型    boardroomType
+bdt_id         序号
+bdt_name       类型名
+
+
+
+
+车辆表          car
+c_id         序号
+c_carcode    车牌号码
+c_cartype    车型
+c_desc       备注
+c_state      车辆状态    0_没借  1_借出去了
+
+
+车辆使用记录表     carManger
+cm_id         序号
+c_id          外键
+cm_desc       原因描述
+cm_endTime    结束时间
+cm_startTime  开始时间 
+cm_endplace   目的地   
+create_uid     用车人 
+a_id          审核记录
+
+
+车辆使用人员    carOrUsers
+cou_id         序号
+cm_id          外键   
+cmt_uid        关联人员
+cou_type       1_司机2_随行人员
+
+
+
+
+印章申请记录     seal
+s_id          序号
+s_createTime  申请时间
+st_id         印章类型
+u_id          申请人
+s_desc        请假事由
+a_id          审核记录
+
+
+印章类型       sealtype
+st_id          序号
+st_name        类型名
+
+
+  
+名片印制申请   picketSeal
+ps_id              序号
+u_id               申请人 
+ps_cellphone       手机号  
+ps_phone           座机号
+ps_count           数量  
+ps_desc            备注
+a_id              审核记录
+      
+
+出差申请       Travel
+t_id              序号
+u_id             请假人
+t_startTime      开始时间
+t_endTime        结束时间
+t_place          出差地点
+t_desc           出差理由描述
+t_task           任务
+t_lornmoney      借款金额
+a_id             审核结果
+
+收入证明说明    proofOfearnings
+poe_id           序号
+u_id             申请人
+u_desc           事由
+a_id             审核结果   
+ 
+
+
+
+审核表        approve
+a_id        序号
+a_uid       审核人
+a_time      审核时间
+at_id       审核类型
+a_state     审核状态    (当前审核状态，0审核中1审核完毕)
+ar_id       审核结果
+
+审核类型      approveType
+at_id         序号
+at_name       名字 
+
+审核结果       approveresults
+ar_id        序号
+ar_name      描述
+
+
+
+
+
+
+http://www.tianqi.com/plugin/   天气
+
+http://www.17sucai.com/pins/demoshow/9279   日历
+http://www.17sucai.com/pins/demoshow/3202   日历
+
+http://justcoding.iteye.com/blog/2028252  FullCalendar  日程
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
