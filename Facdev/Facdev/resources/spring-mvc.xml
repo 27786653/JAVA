@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-3.2.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.2.xsd
+		http://www.springframework.org/schema/aop 
+	http://www.springframework.org/schema/aop/spring-aop-3.0.xsd">
+
+
+	<aop:aspectj-autoproxy/>  
+	
+	<!-- 自动扫描且只扫描@Controller -->
+	<context:component-scan base-package="com.lemon.jee.modules,com.wyj.apple.modules"
+		use-default-filters="false">
+		<context:include-filter type="annotation"
+			expression="org.springframework.stereotype.Controller" />
+	</context:component-scan>
+
+	<!-- 开启注解 -->
+	<mvc:annotation-driven>
+		<mvc:message-converters register-defaults="true">
+			<!-- 将StringHttpMessageConverter的默认编码设为UTF-8 -->
+			<bean class="org.springframework.http.converter.StringHttpMessageConverter">
+				<constructor-arg value="UTF-8" />
+			</bean>
+			<!-- 将Jackson2HttpMessageConverter的默认格式化输出设为true -->
+			<bean
+				class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">
+				<property name="prettyPrint" value="true" />
+			</bean> 
+		</mvc:message-converters>
+	</mvc:annotation-driven>
+
+	<!-- 定义JSP文件的位置 -->
+	<bean
+		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+        <property name="suffix" value=".jsp"/>
+		<property name="prefix" value="/" />
+		<property name="order" value="1" />
+		<property name="viewClass"
+			value="org.springframework.web.servlet.view.JstlView" />
+	</bean>
+	
+	<!-- 配置freeMarker -->
+	<bean id="freemarkerConfig"
+		class="org.springframework.web.servlet.view.freemarker.FreeMarkerConfigurer">
+		<property name="templateLoaderPath" value="/WEB-INF/page/" />
+		<property name="freemarkerVariables">
+			<map>
+				<entry key="xml_escape" value-ref="fmXmlEscape" />
+			</map>
+		</property>
+		<property name="freemarkerSettings">
+			<props>
+				<prop key="classic_compatible">true</prop>
+				<prop key="tag_syntax">auto_detect</prop>
+				<prop key="template_update_delay">10</prop>
+				<prop key="defaultEncoding">UTF-8</prop>
+				<prop key="url_escaping_charset">UTF-8</prop>
+				<prop key="locale">zh_CN</prop>
+				<prop key="boolean_format">true,false</prop>
+				<prop key="datetime_format">yyyy-MM-dd HH:mm:ss</prop>
+				<prop key="date_format">yyyy-MM-dd</prop>
+				<prop key="time_format">HH:mm:ss</prop>
+				<prop key="number_format">0.######</prop>
+				<prop key="whitespace_stripping">true</prop>
+			</props>
+		</property>
+	</bean>
+	<bean id="fmXmlEscape" class="freemarker.template.utility.XmlEscape" />
+
+	<!-- 配置freeMarker视图解析器 -->
+	<bean id="freemakerViewResolver"
+		class="org.springframework.web.servlet.view.freemarker.FreeMarkerViewResolver">
+		<property name="viewClass"
+			value="org.springframework.web.servlet.view.freemarker.FreeMarkerView" />
+		<property name="suffix" value=".html" />
+		<property name="contentType" value="text/html; charset=UTF-8" />
+		<property name="exposeRequestAttributes" value="true" />
+		<property name="exposeSessionAttributes" value="true" />
+		<property name="exposeSpringMacroHelpers" value="true" />
+		<property name="requestContextAttribute" value="request" />
+		<!-- <property name="cache" value="true" /> -->
+		<property name="order" value="0" />
+	</bean>
+
+	<bean
+		class="org.springframework.web.servlet.view.ContentNegotiatingViewResolver">
+		<property name="mediaTypes">
+			<map>
+				<entry key="json" value="application/json;charset=utf-8" />
+				<entry key="xml" value="text/xml" />
+				<entry key="htm" value="text/html" />
+			</map>
+		</property>
+		<property name="defaultContentType" value="text/html" />
+	</bean>
+
+	<!-- 容器默认的DefaultServletHandler处理 所有静态内容与无RequestMapping处理的URL -->
+	<mvc:default-servlet-handler />
+
+	<!-- 定义无需Controller的url<->view直接映射 -->
+	<mvc:view-controller path="/" view-name="redirect:/task" />
+
+	<!-- 将Controller抛出的异常转到特定View, 保持SiteMesh的装饰效果 -->
+	<bean
+		class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">
+		<property name="exceptionMappings">
+			<props>
+				<prop key="org.springframework.dao.CleanupFailureDataAccessException">error/cleanupFailureDataAccessException</prop>
+				<prop key="org.springframework.dao.ConcurrencyFailureException">error/concurrencyFailureException</prop>
+				<prop key="org.springframework.dao.DataAccessResourceFailureException">error/dataAccessResourceFailureException</prop>
+				<prop key="org.springframework.dao.DataIntegrityViolationException">error/dataIntegrityViolationException</prop>
+				<prop key="org.springframework.dao.DataRetrievalFailureException">error/dataRetrievalFailureException</prop>
+				<prop key="org.springframework.dao.DeadlockLoserDataAccessException">error/deadlockLoserDataAccessException</prop>
+				<prop key="org.springframework.dao.IncorrectUpdateSemanticsDataAccessException">error/incorrectUpdateSemanticsDataAccessException</prop>
+				<prop key="org.springframework.dao.InvalidDataAccessApiUsageException">error/invalidDataAccessApiUsageException</prop>
+				<prop key="org.springframework.dao.InvalidDataAccessResourceUsageException">error/invalidDataAccessResourceUsageException</prop>
+				<prop key="org.springframework.dao.OptimisticLockingFailureException">error/optimisticLockingFailureException</prop>
+				<prop key="org.springframework.dao.PermissionDeniedDataAccessException">error/permissionDeniedDataAccessException</prop>
+				<prop key="org.springframework.dao.TypeMismatchDataAccessException ">error/typeMismatchDataAccessException </prop>
+				<prop key="org.springframework.dao.UncategorizedDataAccessException">error/uncategorizedDataAccessException</prop>
+				<prop key="java.lang.Throwable">error/500</prop>
+			</props>
+		</property>
+	</bean>
+	
+	<!-- 文件上传 -->
+	<bean 
+	    id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		<property name="maxUploadSize" value="100000000"/>
+		<property name="defaultEncoding" value="utf-8"/>
+	</bean> 
+	
+</beans>

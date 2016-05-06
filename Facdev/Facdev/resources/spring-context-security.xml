@@ -1,0 +1,220 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans:beans xmlns="http://www.springframework.org/schema/security"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:beans="http://www.springframework.org/schema/beans"
+	xsi:schemaLocation="  
+           http://www.springframework.org/schema/beans  
+           http://www.springframework.org/schema/beans/spring-beans-3.2.xsd  
+           http://www.springframework.org/schema/security  
+           http://www.springframework.org/schema/security/spring-security-3.2.xsd">
+
+
+	<http pattern="/**/*.jpg" security="none" />
+	<http pattern="/**/*.png" security="none" />
+	<http pattern="/**/*.gif" security="none" />
+	<http pattern="/**/*.ico" security="none" />
+	<http pattern="/**/*.css" security="none" />
+	<http pattern="/**/*.js" security="none" />
+	<http pattern="/**/*.xls" security="none" />
+	<http pattern="/attachment/*" security="none" />
+
+	<!-- spring securit 3.X新的资源放行配置方式，不受保护的资源 -->
+	<http pattern="/upload*" security="none" />
+	<http pattern="/up" security="none" />
+	<http pattern="/Public/Uploadify/uploadify.swf" security="none" />
+	<http pattern="/imageServlet*" security="none" />
+	<http pattern="/common/image.jsp*" security="none" />
+	<http pattern="/common/sessionTimeout.jsp" security="none" />
+	<http pattern="/compare*" security="none" />
+	<http pattern="/getEnterpriceData" security="none" />
+	<http pattern="/regis*" security="none" />
+	<http pattern="/getCode*" security="none" />
+	<http pattern="/changePassword" security="none" />
+	<http pattern="/messagetest" security="none" />
+	<http pattern="/generatePDF.jsp" security="none" />
+	<http pattern="/generatePdf" security="none" />
+	<http pattern="/ChangePassword.jsp" security="none" />
+	<http pattern="/old*.jsp" security="none" />
+
+
+	<http pattern="/jquery/**" security="none" />
+	<http pattern="/testMessage.jsp" security="none" />
+	<http pattern="/successMessage.jsp" security="none" />
+	<http pattern="/login.jsp**" security="none" />
+	<http pattern="/register/upload" security="none" />
+	<http pattern="/login/**" security="none" />
+	<http pattern="/ScanPackNo/**" security="none" />
+	
+	<http pattern="/Excel/**" security="none" />
+	
+	<http pattern="/RepairPackNo/**" security="none" />
+
+	<!-- 开启默认的拦截器 -->
+	<http auto-config="true" use-expressions="true">
+
+		<!-- 登陆页面配置 -->
+		<form-login login-page="/login.jsp" username-parameter="username"
+			login-processing-url="/loginCheck" password-parameter="password"
+			authentication-success-handler-ref="successHandler"
+			authentication-failure-handler-ref="failureHandler" />
+
+
+		<logout logout-url="/logout" logout-success-url="/login.jsp" />
+
+		<!-- session管理器 -->
+		<session-management
+			session-authentication-strategy-ref="sas" invalid-session-url="/common/sessionTimeout.jsp" />
+
+		<!-- 登录过滤器 -->
+		<custom-filter before="CONCURRENT_SESSION_FILTER" ref="concurrencyFilter" />
+
+		<!-- 增加一个自定义的filter，放在FILTER_SECURITY_INTERCEPTOR之前， 实现用户、角色、权限、资源的数据库管理。 -->
+		<custom-filter ref="appSecurityInterceptor" before="FILTER_SECURITY_INTERCEPTOR" />
+		<custom-filter ref="exceptionTranslationFilter" before="EXCEPTION_TRANSLATION_FILTER" />
+	</http>
+
+	<!-- 用户的密码加密或解密 -->
+	<beans:bean id="passwordEncoder"
+		class="org.springframework.security.authentication.encoding.Md5PasswordEncoder" />
+
+
+
+	<!-- 当前的session -->
+	<beans:bean id="concurrencyFilter"
+		class="org.springframework.security.web.session.ConcurrentSessionFilter">
+		<beans:property name="sessionRegistry" ref="sessionRegistry" />
+		<beans:property name="expiredUrl" value="/common/sessionTimeout.jsp" />
+	</beans:bean>
+
+	<beans:bean id="sas"
+		class="org.springframework.security.web.authentication.session.ConcurrentSessionControlStrategy">
+		<beans:constructor-arg name="sessionRegistry"
+			ref="sessionRegistry" />
+		<beans:property name="maximumSessions" value="20" />
+	</beans:bean>
+
+	<beans:bean id="sessionRegistry"
+		class="org.springframework.security.core.session.SessionRegistryImpl" />
+
+	<!-- 一个自定义的filter，必须包含authenticationManager, accessDecisionManager,securityMetadataSource三个属性。 -->
+	<beans:bean id="appSecurityInterceptor"
+		class="com.lemon.jee.modules.security.filter.AppSecurityInterceptor">
+		<beans:property name="authenticationManager" ref="authenticationManager" />
+		<beans:property name="accessDecisionManager" ref="appAccessDescisionManager" />
+		<beans:property name="securityMetadataSource" ref="appSecurityMetadataSource" />
+	</beans:bean>
+
+	<beans:bean id="myUserDetailsService"
+		class="com.lemon.jee.modules.security.service.MyUserDetailsService" />
+
+	<!-- 权限管理者 -->
+	<authentication-manager alias="authenticationManager">
+		<authentication-provider user-service-ref="myUserDetailsService">
+			<password-encoder ref="passwordEncoder">
+				<salt-source user-property="username" />
+			</password-encoder>
+		</authentication-provider>
+	</authentication-manager>
+
+
+	<!-- 访问决策器，决定某个用户具有的角色，是否有足够的权限去访问某个资源。 -->
+	<beans:bean id="appAccessDescisionManager"
+		class="com.lemon.jee.modules.security.manager.AppAccessDescisionManager" />
+
+
+	<!-- 资源源数据定义，将所有的资源和权限对应关系建立起来，即定义某一资源可以被哪些角色去访问。 -->
+	<beans:bean id="appSecurityMetadataSource"
+		class="com.lemon.jee.modules.security.service.AppSecurityMetadataSource">
+		<beans:constructor-arg name="sysRoleService"
+			ref="sysRoleService"></beans:constructor-arg>
+	</beans:bean>
+
+
+	<!-- 登录成功业务处理 -->
+	<beans:bean id="successHandler"
+		class="com.lemon.jee.modules.security.handler.LoginAuthenticationSuccessHandler">
+		<beans:property name="url" value="/login"></beans:property>
+	</beans:bean>
+
+	<!-- 登录失败业务处理 -->
+	<beans:bean id="failureHandler"
+		class="com.lemon.jee.modules.security.handler.LoginAuthenticationFailureHandler" />
+
+	<!-- 安全资源白名单(URL) -->
+	<beans:bean id="securityMetadataSourceTrustListHolder"
+		class="com.lemon.jee.modules.security.util.SecurityMetadataSourceTrustListHolder">
+		<beans:property name="trustList">
+			<beans:list>
+				<!-- <beans:value>/index.htm</beans:value> <beans:value>/hello.htm</beans:value> -->
+			</beans:list>
+		</beans:property>
+	</beans:bean>
+
+	<!-- 安全用户白名单 -->
+	<beans:bean id="securityUserTrustListHolder"
+		class="com.lemon.jee.modules.security.util.SecurityUserTrustListHolder">
+		<beans:property name="trustList">
+			<beans:list>
+				<!-- <beans:value>administrator</beans:value> -->
+			</beans:list>
+		</beans:property>
+	</beans:bean>
+
+	<!-- 认证异常处理 -->
+	<beans:bean id="exceptionMappingAuthenticationFailureHandler"
+		class="org.springframework.security.web.authentication.ExceptionMappingAuthenticationFailureHandler">
+		<beans:property name="exceptionMappings">
+			<beans:map>
+				<!-- 用户不存在 No User -->
+				<beans:entry
+					key="org.springframework.security.core.userdetails.UsernameNotFoundException"
+					value="/login?error=1" />
+				<!-- 凭证错误(密码不正确) Bad Credentials -->
+				<beans:entry
+					key="org.springframework.security.authentication.BadCredentialsException"
+					value="/login?error=2" />
+				<!-- 用户不可用 User is disabled -->
+				<beans:entry
+					key="org.springframework.security.authentication.DisabledException"
+					value="/login.jsp?isQualified=false" />
+				<!-- 登陆凭证错误 Authentication Failure -->
+				<beans:entry
+					key="org.springframework.security.core.AuthenticationException"
+					value="/login?error=4" />
+			</beans:map>
+		</beans:property>
+	</beans:bean>
+
+	<!-- 国际化 -->
+	<beans:bean id="messageSource"
+		class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
+		<!-- <beans:property name="basename" value="classpath:messages_zh_CN.properties" 
+			/> -->
+		<beans:property name="basename"
+			value="classpath:org/springframework/security/messages_zh_CN" />
+	</beans:bean>
+	<beans:bean id="localeResolver"
+		class="org.springframework.web.servlet.i18n.AcceptHeaderLocaleResolver" />
+
+	<!-- 开启Spring Security3认证和授权日志 -->
+	<beans:bean
+		class="org.springframework.security.authentication.event.LoggerListener" />
+	<beans:bean class="org.springframework.security.access.event.LoggerListener" />
+
+
+	<beans:bean id="authenticationEntryPoint"
+		class="org.springframework.security.web.authentication.LoginUrlAuthenticationEntryPoint">
+		<beans:property name="loginFormUrl" value="/login.jsp?isQualified=false" />
+	</beans:bean>
+
+	<beans:bean id="exceptionTranslationFilter"
+		class="org.springframework.security.web.access.ExceptionTranslationFilter">
+		<beans:property name="authenticationEntryPoint" ref="authenticationEntryPoint" />
+		<beans:property name="accessDeniedHandler" ref="accessDeniedHandler" />
+	</beans:bean>
+
+	<beans:bean id="accessDeniedHandler"
+		class="org.springframework.security.web.access.AccessDeniedHandlerImpl">
+		<beans:property name="errorPage" value="/error.jsp" />
+	</beans:bean>
+
+</beans:beans>  
