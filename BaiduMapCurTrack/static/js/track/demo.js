@@ -166,7 +166,7 @@ define('track/message', function () {
         2: '相关参数为空,无法查询轨迹信息',
         101: 'AK参数不存在,未查询到相关服务',
         200: 'AK参数错误，请检查在重试',
-        201: 'AK被禁用,请到<a href="http://lbsyun.baidu.com/apiconsole/key" target="_blank">控制台</a>解禁',
+        201: 'AK被禁用,请联系管理员',//<a href="http://lbsyun.baidu.com/apiconsole/key" target="_blank">控制台</a>解禁
         3003: '未查询到相关轨迹信息',
         4005: '未查询到相关鹰眼服务',
         9999: '<i class="fa fa-exclamation-triangle"></i>  最多同时选择10条记录'
@@ -454,7 +454,7 @@ define('track/demo', ['track/urls', 'track/message', 'track/track', 'track/draw'
                     res = formatHistoryPoints(res);
                     var entity_name = res.entity_name;
 
-                    var li = $('#seled-track-' + entity_name);
+                    var li = $('#' + entity_name);
                     li.find('.pro-bar').removeClass('progressing');
                     var track = selectedTracks_2[entity_name];
                     track.pois = res.pois;
@@ -710,6 +710,7 @@ define('track/demo', ['track/urls', 'track/message', 'track/track', 'track/draw'
                 }
                 return false;
             });
+            //track history select
             selTracksPanel.delegate('li', 'click', function (e) {
                 loadMask.show();
                 var entity_name = $(this).attr('data-id');
@@ -1988,6 +1989,7 @@ define('track/track', ['track/urls', 'track/draw', 'track/canvasLayer', 'track/u
                 if (page_index >= totalPage) {
                     data.points = points;
                     success(data);
+                    loadMask.hide();
                     return;
                 }
 
@@ -1998,7 +2000,7 @@ define('track/track', ['track/urls', 'track/draw', 'track/canvasLayer', 'track/u
         };
 
         getdata();
-        loadMask.hide();
+
     };
     // track历史轨迹 预处理行程化 按照轨迹点时间进行切分 将轨迹点切分成一条条行程
     Track.prototype.initTravels = function () {
