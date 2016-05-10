@@ -18,6 +18,8 @@
 	<context:component-scan base-package="com">
 	</context:component-scan>
 	
+	<bean id="URL" class="java.lang.String" >	<constructor-arg value="${Content.url}"/></bean>
+	
 <!-- 加载配置文件 -->
 <context:property-placeholder location="classpath:jdbc.properties"/>
 <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource"

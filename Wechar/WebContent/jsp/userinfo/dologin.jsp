@@ -33,5 +33,6 @@
   <input type="hidden" name="act" id="act" value="log" />
 </div>
 </form>
+ <a href="${pageScope.basePath}jsp/uploadfile/index.jsp">跳 转</a>
 <div class="line60"></div>
 </html>

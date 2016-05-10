@@ -35,11 +35,13 @@ import MessageRouterHandler.DemoImageHandler;
 import MessageRouterHandler.DemoLogHandler;
 import MessageRouterHandler.DemoOAuth2Handler;
 import MessageRouterHandler.DemoTextHandler;
+import MessageRouterHandler.PicOrContentHandler;
 
 @Controller
 public class MainControll {
 	
-	private String UrlPath="http://332f0217.ngrok.io/Wechar/";
+	@Resource(name="URL")
+	private String UrlPath;
 	
 	@Autowired 
 	public WxMpConfigStorage wxMpConfigStorage;
@@ -52,7 +54,7 @@ public class MainControll {
 	 public MainControll() {
 		 
 	}
-	//AsseccToken验证与消息路由
+	//AsseccToken验证与消息路由   http://e731300d.ngrok.io/Wechar/AsseccTokencheck.action
 	@RequestMapping("/AsseccTokencheck")
 	@ResponseBody
 	public void getAsseccToken(
@@ -152,8 +154,6 @@ public class MainControll {
 	}
 	
 	
-
-	
 	
 	//初始化消息路由器
 	private void initMessageRouter() {
@@ -163,14 +163,18 @@ public class MainControll {
 	    WxMpMessageHandler textHandler = new DemoTextHandler();
 	    WxMpMessageHandler imageHandler = new DemoImageHandler();
 	    WxMpMessageHandler oauth2handler = new DemoOAuth2Handler();
+	    WxMpMessageHandler handler=new PicOrContentHandler();
+	    
 	    DemoGuessNumberHandler guessNumberHandler = new DemoGuessNumberHandler();
 	 wxMpMessageRouter = new WxMpMessageRouter(wxMpService);
-      wxMpMessageRouter
+      
+	wxMpMessageRouter
           .rule().handler(logHandler).next()
           .rule().msgType(WxConsts.XML_MSG_TEXT).matcher(guessNumberHandler).handler(guessNumberHandler).end()
           .rule().async(false).content("哈哈").handler(textHandler).end()
           .rule().async(false).content("图片").handler(imageHandler).end()
-          .rule().async(false).content("oauth").handler(oauth2handler).end();		
+          .rule().async(false).content("oauth").handler(oauth2handler).end()
+          .rule().async(false).eventKey("V1001_GOOD").handler(handler).end();
 	}
 	
 }
