@@ -1,0 +1,533 @@
+﻿
+
+
+
+
+
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="initial-scale=1, width=device-width, maximum-scale=1, user-scalable=no">
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name='apple-touch-fullscreen' content='yes'>
+<meta name="full-screen" content="yes">
+<meta name="format-detection" content="telephone=no" />
+
+
+
+
+
+<title>汇通微商城</title>
+
+<link href="css/common_2.css" rel="stylesheet" type="text/css">
+<script src="js/jquery.js"></script>
+<script src="js/json_parse.js"></script>
+<script src="js/common.js"></script>
+
+<script type="text/javascript">
+	//js全局项目路径
+	var applicationContextPath = '/mall';
+	var imagePath='http://img.leagcard.com/cms/online';
+	var installmentFlag = '1';// 是否支持分期
+	function pageBack() {
+		var a = window.location.href;
+		if (/#top/.test(a)) {
+			window.history.back(-2);
+			window.location.load(window.location.href);
+		} else {
+			window.history.back(-1);
+			window.location.load(window.location.href);
+		}
+	}
+
+	function chiosePage(titleId) {
+		$("#headerTitle a").removeClass("active");
+		$("#" + titleId).addClass("active");
+		//移动到选中菜单
+		$("#headerTitle a").each(function(i,obj){
+			if(obj.id == titleId){
+				$(obj).addClass("cur");
+			} else {
+				$(obj).removeClass("cur");
+			}
+		});
+	}
+	/*搜索*/
+	function entersearch(keyword, productType){
+		/* if(keyword == null || keyword.trim() == ''){
+			alert("请输入搜索条件!");
+			return false;
+		} */
+		var event = window.event || arguments.callee.caller.arguments[0];
+        if (event.keyCode == 13 || event.button == 0)
+        {
+        	var url = '/mall/weiproduct/weiProductList.action?keyword='+keyword + '&productType=' + productType + '&productCtg=';
+        	/* if($("#pointCondition").val() != '' && $("#pointCondition").val() > 0){
+        		url += '&pointCondition=' + $("#pointCondition").val();
+        	} */
+        	window.location.href = url;
+        }
+	}
+	
+	/*综合搜索*/
+	function entersearchProduct(keyword){
+		/* if(keyword == null || keyword.trim() == ''){
+			alert("请输入搜索条件!");
+			return false;
+		} */
+		var event = window.event || arguments.callee.caller.arguments[0];
+	    if (event.keyCode == 13 || event.button == 0)
+	    {
+	    	var url = '/mall/weiproduct/weiSearchProductList.action?productCtg=&classType=&keyword='+keyword;
+	    	/* if($("#pointCondition").val() != '' && $("#pointCondition").val() > 0){
+	    		url += '&pointCondition=' + $("#pointCondition").val();
+	    	} */
+	    	window.location.href = url;
+	    }
+	}
+	/*综合搜索*/
+	function insearchProduct(classType,keyword){
+		/* if(keyword == null || keyword.trim() == ''){
+			alert("请输入搜索条件!");
+			return false;
+		} */
+		var event = window.event || arguments.callee.caller.arguments[0];
+	    if (event.keyCode == 13 || event.button == 0)
+	    {
+	    	var url = '/mall/weiproduct/weiSearchProductList.action?productCtg=&classType='+classType+'&keyword='+keyword;
+	    	/* if($("#pointCondition").val() != '' && $("#pointCondition").val() > 0){
+	    		url += '&pointCondition=' + $("#pointCondition").val();
+	    	} */
+	    	window.location.href = url;
+	    }
+	}
+	/*综合搜索菜单筛选*/
+	function searchProductCtg(classType, productCtg) {
+		window.location.href = applicationContextPath + '/weiproduct/weiSearchProductList.action?productCtg=' + productCtg + '&classType=' + classType + '&keyword=';
+	}
+	
+	/*综合搜索积分范围筛选*/
+	function searchPointRange(classType, pointRange) {
+		window.location.href = '/mall/weiproduct/weiSearchProductList.action?classType=' + classType + '&keyword=&pointRange=' + pointRange + '&orderType=price&orderSortBy=desc';
+	}
+	
+	function changeHeaderTtile(title){
+		try {
+			$("#header .center").html(title);
+		} catch (e) {
+			
+		}
+	}
+	
+	/*菜单筛选*/
+	function selectproductCtg(productType, productCtg) {
+		window.location.href = '/mall/weiproduct/weiProductList.action?productType=' + productType + '&productCtg=' + productCtg;
+	}
+	
+	/*积分范围筛选*/
+	function selectPointRange(productType, pointRange) {
+		window.location.href = '/mall/weiproduct/weiProductList.action?productType=' + productType + '&pointRange=' + pointRange + '&orderType=price&orderSortBy=desc';
+	}
+</script>
+
+</head>
+<body>
+	<div class="body_frame" style="
+		padding-top:44px;
+		">
+		
+		
+			<link href="css/mall_only_2.css" rel="stylesheet" type="text/css">
+		
+		
+		<header>
+			<div class="head" id="header" style="">
+                <div class="LR"><a id="btnGoBack" href="javascript:pageBack()" class="back"><img src="picture/icon_back.png"></a></div>
+                <div class="center"></div>
+                <div class="LR">
+                	<a href="/mall/weiindex/weiShopIndex.action" class="home" style="">
+                		<img src="picture/iconmenu_home_active.png">
+                	</a>
+                </div>
+            </div>
+			
+		</header>
+		<!-- include -->
+		
+
+
+
+
+<link href="css/define.css" rel="stylesheet" type="text/css">
+<script src="js/define.js"></script>
+<script src="js/security.js"></script>
+<script type="text/javascript">
+	adaptationOS();
+	changeHeaderTtile('个人中心');
+	function queryOrderLoginSub() {
+		var mobileNo = $("#mobileNo").val();
+		var cardNo = $("#cardNo").val();
+		var smsCode = $("#smsCode").val();
+		if (mobileNo == null || mobileNo.trim() == "") {
+			$("#message").removeClass("uhide");
+			$("#sendms_show").html("手机号不能为空！");
+			return false;
+		} else if (!isMobile(mobileNo)) {
+			$("#message").removeClass("uhide");
+			$("#sendms_show").html("请输入正确的手机号！");
+			return false;
+		}
+		if (cardNo == null || cardNo.trim() == "") {
+			$("#message").removeClass("uhide");
+			$("#sendms_show").html("卡号不能为空！");
+			return false;
+		} else if (!zhengshu(cardNo, 4)) {
+			$("#message").removeClass("uhide");
+			$("#sendms_show").html("请输入正确的卡号！");
+			$("#cardNo").val("");
+			$("#cardNo").focus();
+			return false;
+		}
+		//通过判断$("#cvv2")的dispaly样式是否为none，验证CVV2是否为空
+		var isShowCvv2 = $("#isShowCvv2").val();
+		if(isShowCvv2 == "true"){
+			if($("#cvv2_input").val() == null || $("#cvv2_input").val() == ''){
+				$("#message").removeClass("uhide");
+				$("#sendms_show").html("CVV2不能为空！");
+				return;
+			}
+			else{
+				$("#cvv2Cipher").val(RSAUtils.encryptSpeciExpMod($("#cvv2_input").val()));
+			}
+		}
+		if (smsCode == "" || smsCode == null) {
+			$("#message").removeClass("uhide");
+			$("#sendms_show").html("短信验证码不能为空！");
+			return false;
+		} else if (!isSmsCode(smsCode, 6)) {
+			$("#message").removeClass("uhide");
+			$("#sendms_show").html("请输入正确的短信验证码！");
+			$("#smsCode").val("");
+			$("#smsCode").focus();
+			return false;
+		}
+		var flag = false;
+		$.ajax({
+			type: "POST",
+			url: applicationContextPath + "/weiorder/ajaxCheckSmsCode.action",
+			data: {"smsCode" : smsCode, "mobileNo" : mobileNo},
+			async: false,
+			success: function(data){
+				flag = true;
+				
+				if("1" != data.status){
+					if ("2" == data.status) {
+						//重置发送按钮
+						limitTime = 0;
+					}
+					$("#message").removeClass("uhide");
+					$("#sendms_show").html(data.msg);
+					$("#smsCode").val("");
+					$("#smsCode").focus();
+					flag = false;
+				}
+			},
+			error: function(){
+				$("#message").removeClass("uhide");
+				$("#sendms_show").html("短信验证码验证失败，请重新验证！");
+				$("#smsCode").val("");
+				$("#smsCode").focus();
+				flag = false;
+			}
+		});
+		if(!flag){
+			return false;
+		}
+		return true;
+	}
+
+	function sendSms() {
+		// 手机验证
+		if($("#mobileNo").val() == null || $("#mobileNo").val() == ''){
+			$("#message").removeClass("uhide");
+			$("#sendms_show").html("手机号不能为空！");
+			return;
+		}
+		var testMobile = /^1[0-9]{10}$/;
+		if (!testMobile.test($("#mobileNo").val())) {
+			$("#message").removeClass("uhide");
+			$("#sendms_show").html("请输入正确的手机号！");
+			return;
+		}
+		if($("#cardNo").val() == null || $("#cardNo").val() == ''){
+			$("#message").removeClass("uhide");
+			$("#sendms_show").html("卡号不能为空！");
+			return;
+		}
+		// 验证卡号验证
+		var testCardNo = /^[0-9]{4}$/;
+		if (!testCardNo.test($("#cardNo").val())) {
+			$("#message").removeClass("uhide");
+			$("#sendms_show").html("请输入正确的卡号后四位！");
+			return;
+		}
+		//通过判断$("#cvv2")的dispaly样式是否为none，验证CVV2是否为空
+		var isShowCvv2 = $("#isShowCvv2").val();
+		if(isShowCvv2 == "true"){
+			if($("#cvv2_input").val() == null || $("#cvv2_input").val() == ''){
+				$("#message").removeClass("uhide");
+				$("#sendms_show").html("CVV2不能为空！");
+				return;
+			}
+			else{
+				$("#cvv2Cipher").val(RSAUtils.encryptSpeciExpMod($("#cvv2_input").val()));
+			}
+		}
+		// 图形验证码验证
+		if($("#imgCode").val() == null || $("#imgCode").val() == ''){
+			$("#message").removeClass("uhide");
+			$("#sendms_show").html("图形验证码不能为空！");
+			return;
+		}
+		var testImgCode = /^[0-9]{4}$/;
+		if (!testImgCode.test($("#imgCode").val())) {
+			$("#message").removeClass("uhide");
+			$("#sendms_show").html("请输入正确的图形验证码！");
+			return;
+		}
+
+		var paySendSmsUrl = applicationContextPath + "/weiorder/queryOrderSendSms.action";
+		limitTime = 60;// 初始化倒计时时间
+		setBtnSecond();
+		$.ajax({
+			type : "GET",
+			url : paySendSmsUrl,
+			async: false,
+			data : {
+				"smsMobile" : $("#mobileNo").val(),
+				"cardNo" : $("#cardNo").val(),
+				"imgCode" : $("#imgCode").val(),
+				"cvv2Cipher" : $("#cvv2Cipher").val()
+			},
+			success : function(data) {
+				if (data.status == 'SUCCESS') {
+					// 发送成功
+					$("#message").removeClass("uhide");
+					$("#sendms_show").html("<font style=\"color: green;\">" + data.msg + "</font>");
+				} else if (data.status == 'FAIL') {
+					if (!data.isCount) {
+						limitTime = 0;// 非短信发送太频繁，倒计时置0
+					}
+					$("#message").removeClass("uhide");
+					$("#sendms_show").html(data.msg);
+					if(data.isShowCvv2){//如果data.isShowCvv2为true，则显示CVV2输入框
+						$("#cvv2").removeClass("uhide");
+						$("#isShowCvv2").val("true");//设置isShowCvv为true
+						$("#sendms_show").html("对不起，您手机号对应的后4位为" + $("#cardNo").val() +"的卡片存在多张，请输入您要使用卡片的CVV2！");
+					}
+				}
+			},
+			error : function(msg) {
+				showFail("系统错误，验证码发送失败！");
+				limitTime = 0;
+				return false;
+			}
+		});
+	}
+
+	var limitTime = 0;
+
+	function setBtnSecond() {
+		limitTime--;
+		if (limitTime <= 0) {
+			$("#smsBtn").show();
+			$("#smsBtnNo").hide();
+			//图形验证码可输入
+			$("#imgCode").removeAttr("readonly");
+			// 刷新图形验证码
+			$("#imgId").attr("src","/mall/base/validateImg.action?type=weiLoginImgCode&time=" + new Date().getTime());
+			$("#imgCode").val("");
+		} else {
+			$("#smsBtnNo").html("再次发送(" + limitTime + ")");
+			$("#smsBtn").hide();
+			$("#smsBtnNo").show();
+			//图形验证码只读
+			$("#imgCode").attr("readonly","readonly");
+			setTimeout("setBtnSecond(" + limitTime + ")", 1000);
+		}
+	}
+
+	$(function() {
+		$("#imgId").attr("src","/mall/base/validateImg.action?type=weiLoginImgCode&time=" + new Date().getTime());
+		var resultMsg = '';
+		if(resultMsg != null && resultMsg != ""){
+			showFail(resultMsg);
+		}
+	});
+</script>
+<!-- 是否显示cvv2输入框 -->
+<input type="hidden" name="isShowCvv2" value="false" id="isShowCvv2"/>
+<!--loginStart-->
+        
+<form id="weiDoQueryOrderLogin" name="weiDoQueryOrderLogin" onsubmit="return queryOrderLoginSub();" action="/mall/weiorder/weiDoQueryOrderLogin;jsessionid=5A465D1F3E1F2D0FEF6D897486683196.node1" method="POST">
+	<input type="hidden" name="returnURL" value="" id="weiDoQueryOrderLogin_returnURL"/>
+	<div class="select_instalment borTD">
+		<div class="login_logo">
+			<img alt="" src="picture/0408_logo.jpg">
+		</div>
+		<div class="title">
+			<span class="fl w70">手&nbsp;&nbsp;&nbsp;机&nbsp;&nbsp;&nbsp;号</span>
+			<input id="mobileNo" name="mobileNo" type="text" class="l_input" placeholder="请输入手机号" value=""
+				maxlength="11">
+		</div>
+		<div class="title">
+			<span class="fl w70">卡号末四位</span>
+			<input id="cardNo" name="cardNo" value="" type="text" class="l_input" placeholder="(信用卡)如：8888" maxlength="4" value="">
+		</div>
+		<div id="cvv2" class="title uhide"> 
+			<span class="fl w70">CVV2</span>
+			<input id="cvv2_input" type="text" class="l_input" placeholder="CVV2见卡片背面后三位" maxlength="3" value="">
+			<input type="hidden" name="cvv2Cipher" value="" id="cvv2Cipher"/><!-- 隐藏域，用于保存CVV2的密文 -->
+		</div>	
+		<div class="title">
+			<span class="fl w70">图形验证码</span>
+			<img class="verifi" id="imgId" alt="" src="picture/4b9ea9e62cca4271aca1f9f0ddb9f43c.gif"
+				onclick="this.src='/mall/base/validateImg.action?type=weiLoginImgCode&time=' + new Date().getTime();" />
+			<input id="imgCode" name="imgCode" maxlength="4" type="text" class="l_input w100" placeholder="点击图形码刷新">
+		</div>
+		<div class="title">
+			<span class="fl w70">短信验证码</span>
+			<input id="smsCode" name="smsCode" type="text" class="l_input w60" placeholder="请输入" maxlength="6">
+			<a id="smsBtn" onclick="javascript:sendSms();" class="btn fr">点击获取验证码</a>
+			<a id="smsBtnNo" class="btn fr gray_bg " style="display: none;">再次发送</a>
+		</div>
+		<div id="message" class="title uhide" style="height: auto;line-height: 15px;min-height: 20px;padding-top: 10px;padding-bottom: 10px;">
+			<span id="sendms_show" class="red" style="font-size: 13px;"></span>
+		</div>
+		<div class="login_btn" style="border-bottom: 0px;padding-bottom: 0px;">
+			<a onclick="javascript:document.getElementById('loginBtn').click();">确认</a>
+		</div>
+		
+		
+			<div style="border-bottom: 1px solid #C7C7C7;padding:5px 0px 10px 10px;">
+				<span style="font-size: 11px;color: #FF3333;">持卡人请直接使用卡号和预留手机号登陆，无需注册。</span>
+			</div>
+		
+	</div>
+	<input type="submit" style="display: none;" id="loginBtn" />
+</form>
+
+
+
+<!--loginEnd-->
+
+		 <!--手机数码End-->
+        <!--menuStart-->
+       
+        <!--menuEnd-->
+       <!--  <div style="height: 20px;width: 100%;"></div> -->
+        <!-- 版权 -->
+		<footer class="copyright">银行卡商城 2015 – 版权所有 沪ICP备11039870号-2</footer>
+	</div>
+	
+	
+	 <div id="popup_fail" style="display: none">
+        <!--maskStart-->    
+            <div class="mask"></div>
+        <!--maskEnd-->        
+            <div class="popup">
+                <div class="title">
+                    <div class="LR"></div>
+                    <div class="center">提示</div>                
+                    <div class="LR"><a title="关闭" class="close" onClick="closeFail()"></a></div>                
+                </div>
+                <div class="oper_tips">
+                    <img align="absmiddle" src="picture/icon_alert.png"><span id="failMessage">对不起，操作失败！</span>
+                </div>
+            </div>
+        </div>
+        
+      <div id="popup_succ" style="display: none">
+      <!--maskStart-->    
+          <div class="mask"></div>
+      <!--maskEnd-->        
+          <div class="popup">
+              <div class="title">
+                  <div class="LR"></div>
+                  <div class="center">提示</div>                
+                  <div class="LR"><a title="关闭" class="close" onClick="closeSuccess()"></a></div>                
+              </div>
+              <div class="oper_tips">
+                  <img align="absmiddle" src="picture/icon_complete.png"><span id="succMessage">恭喜您，操作成功！</span>
+              </div>
+          </div>
+      </div>
+
+	<div id="popup_confirm" style="display: none;">
+		<!--maskStart-->
+		<div class="mask"></div>
+		<!--maskEnd-->
+		<div class="popup">
+			<div class="title">
+				<div class="LR"></div>
+				<div class="center">提示</div>
+				<div class="LR">
+					<a title="关闭" class="close" onClick="closePopupConfirm()"></a>
+				</div>
+			</div>
+			<div class="oper_tips">
+				<img align="absmiddle" src="picture/icon_alert.png">
+				<span id="confirmMessage">提示信息</span>
+			</div>
+			<div class="box_btns">
+				<a id="btn_cancel" onClick="closePopupConfirm()" class="blur">取&nbsp;&nbsp;消</a>
+				<a href="picture/4b9ea9e62cca4271aca1f9f0ddb9f43c.gif;" id="btn_sub">确&nbsp;&nbsp;定</a>
+			</div>
+		</div>
+	</div>
+	<div id="popup_waiting" style="display: none">
+      <!--maskStart-->    
+          <div class="mask"></div>
+      <!--maskEnd-->        
+          <div class="popup" align="center">
+			<img align="absmiddle" src="picture/bx_loader.gif">
+          </div>
+      </div>
+	
+</body>
+</html>
+<script type="text/javascript">
+	function showSuccess(message) {
+		$("#popup_succ").css("display", "block");
+		$("#popup_succ #succMessage").html(message);
+	};
+	function closeSuccess() {
+		$("#popup_succ").css("display", "none");
+	};
+	function showFail(message) {
+		$("#popup_fail").css("display", "block");
+		$("#popup_fail #failMessage").html(message);
+	};
+	function closeFail() {
+		$("#popup_fail").css("display", "none");
+	};
+
+	/**
+	 * alertConfirm弹出
+	 * @param {} message
+	 * @param {} bindEvent 回调函数
+	 */
+	function showConfirmMessage(message,bindEvent){
+		$("#popup_confirm").css("display", "block");
+		$("#popup_confirm #confirmMessage").html(message);
+		$("#btn_sub").removeAttr("href");
+		$("#btn_sub").attr("href",bindEvent);
+	}
+	/**
+	 * 关闭alertConfirm弹出
+	 */
+	function closePopupConfirm(){
+		$("#popup_confirm").css("display","none");
+	}
+</script>

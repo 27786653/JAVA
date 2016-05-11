@@ -1,0 +1,343 @@
+
+
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+<meta name="viewport" content="initial-scale=1.0, user-scalable=yes" />
+
+
+
+
+<meta name ="keywords" content="宁波银行汇通商城">
+<title>宁波银行汇通商城</title>
+<link href="/mall/css/base.css" rel="stylesheet" type="text/css" />
+<link href="/mall/style/v1/skin/golden/css/details.css" rel="stylesheet" type="text/css" />
+<link href="/mall/style/v1/skin/golden/css/easydropdown.css" rel="stylesheet" type="text/css"/>
+<script src="/mall/scripts/jquery.min.js"></script>
+<script src="/mall/scripts/jquery.easydropdown.js"></script>
+<script type="text/javascript" src="/mall/scripts/jquery1.3.2.js"></script>
+<script type="text/javascript" src="/mall/scripts/jquery.alert.js"></script>
+<script type="text/javascript">
+	var contextPath = '/mall';
+	var applicationContextPath = 'http://mall.nbcb.com.cn/mall';
+	var httpsApplicationContextPath = 'https://mall.nbcb.com.cn/mall';
+</script>
+<script type="text/javascript" src="/mall/scripts/scrolltopcontrol.js"></script>
+
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?04457061aa92f057de1fc23b9611f726";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+</head>
+<body>
+<form id="qryPointRange" name="qryPointRange" action="/mall/product/searchRangeList;jsessionid=6AD54BC11D869FF5B9ADCE582FD49FE2.node1" method="post">
+	<input type="hidden" name="queryVo.pointRange" value="" id="pointRange"/>
+</form>
+
+
+
+<div class="details_1160">
+
+  <div class="details_one">
+    <div class="details_one_1" id="user_title">
+		
+			您好，欢迎您来到宁波银行汇通商城！ <a href="https://mall.nbcb.com.cn/mall/member/login.action">[请登录]</a>新用户？<a href="https://mall.nbcb.com.cn/mall/member/register.action"><b>立即注册</b></a>
+		
+    	
+		
+    </div>
+    <div class="details_one_2">
+    	  
+    	<a href="http://mall.nbcb.com.cn/mall/member/order/mallOrderList.action" class="details_one_2_3">我的订单</a>
+    	<span>|</span>
+    	<a href="http://mall.nbcb.com.cn/mall/member/index.action">会员中心</a>
+    	
+    	<span>|</span>
+    	<a href="http://www.nbcb.com.cn" target="_blank">银行主站</a>	
+    	
+    </div>
+  </div>
+  
+
+  
+  <div class="details_clear"></div>
+  <div class="details_three">
+    <div class="details_three_1">
+        <!-- 
+        <a href="http://mall.nbcb.com.cn"><img src="http://img.leagcard.com/cms/uploadFiles/banklogo/0408_logo.jpg" width="288px" height="70"/></a>
+         -->
+        <a href="http://mall.nbcb.com.cn"><img src="/mall/image/getImg.action?type=logo" width="288px" height="70"/></a>
+    </div>
+    <div class="details_three_2">
+      <div class="details_plan_search"> </div>
+      <div class="details_plan_search_1">
+        <form id="searchForm" method="post" action="http://mall.nbcb.com.cn/mall/product/productSearchList.action" onsubmit="return validateSearch()">
+        <input name="keyword" type="text" autocomplete="off" class="search-keyword" style="color:gray" onkeydown="searchKeyDown(event)" id="search-keyword" value="输入关键词" onfocus="if(this.value==this.defaultValue){this.value='';this.style.color='black';}"
+									onblur="if(this.value==''){this.value=this.defaultValue;this.style.color='gray';}" />
+        </form>
+      </div>
+      <div class="details_three_2_2">
+      	热门搜索：<a href="javascript:void(0)" onclick="quickSearch('双立人')">双立人</a>
+      	        <a href="javascript:void(0)" onclick="quickSearch('新秀丽')">新秀丽</a>
+      	        <a href="javascript:void(0)" onclick="quickSearch('松下')">松下</a>
+      	        <a href="javascript:void(0)" onclick="quickSearch('电水壶')">电水壶</a>
+      	        <a href="javascript:void(0)" onclick="quickSearch('电烤箱')">电烤箱</a>
+      	        <a href="javascript:void(0)" onclick="quickSearch('罗莱')">罗莱</a>
+      	        <a href="javascript:void(0)" onclick="quickSearch('自行车')">自行车</a>
+      </div>
+      <div class="details_clear"></div>
+      <a href="javascript:void(0)" class="details_three_2_4" onclick="productSearch()"></a>
+      <div class="details_clear"></div>
+      <!-- 
+      <ul id="hotwords" class="hotwords" style="display:none">
+        <li><a href='#'>
+          <h1>背景</h1>
+          <span>13776次搜索</span></a></li>
+      </ul>
+      <script language="javascript" type="text/javascript" src="/mall/scripts/searchjs.js"></script>
+       -->
+    </div>
+     
+    <div class="details_three_3">
+    	<a>
+   			<img src="/mall/images/tel/0408_tel.jpg"  width="288px" height="70"/>
+   		</a>
+    </div>
+    
+    <div class="details_clear"></div>
+  </div>
+</div>
+<div class="details_15px"></div>
+<!-- 当栏目大于4个时，将details_nav_k替换为details_nav  details_nav_in_k 替换为details_nav_in-->
+<div class="details_nav_k">
+  <div class="details_nav_in_k">
+    <ul>
+      
+       	 
+      <li><a href="http://mall.nbcb.com.cn/mall/ui/index.action" id="navigateIndex_0">首页</a></li>
+      
+      
+       	 
+      <li><a href="http://mall.nbcb.com.cn/mall/ui/giftIndex.action" id="navigateIndex_1">积分馆<span class="hot"></span></a></li>
+      
+       
+      <li><a href="http://mall.nbcb.com.cn/mall/ui/shopIndex.action" id="navigateIndex_2">黄金屋</a></li>
+      
+    
+      <!-- 增值服务过渡商品连接开始 -->
+      
+      <!-- 增值服务过渡商品连接结束 -->
+      
+      <!-- 商旅通菜单开始 -->
+      <!-- 当栏目大于4个时，将slt_cd_k替换为slt_cd  slt_xl_k 替换为slt_xl-->
+      
+      <!-- 商旅通菜单结束 -->
+      
+    </ul>
+    <div class="details_clear"></div>
+    <div class="details_nav_car">
+      <div></div>
+      <div class="details_car_num">购物车<span id="cookie_product_amount">0</span>件<a href="http://mall.nbcb.com.cn/mall/cart/showCart.action">去结算&gt;</a></div>
+    </div>
+  </div>
+</div>
+
+ 
+
+<div class="details_10px"></div>
+
+<!-- include -->
+
+
+
+
+
+<div class="details_1160">
+	<div class="details_prompt">
+    	<img src="/mall/style/v1/skin/golden/images/prompt.jpg" />
+        <span></span>
+        <div class="details_clear"></div>
+    </div>
+</div>
+
+
+
+
+<div class="details_10px"></div>
+
+<div class="details_explanation">
+  
+  <div class="details_explanation_text"><div class="details_plan_bottom"><h3 class="details_plan_bottom_1">新手上路</h3><ul><li><a href="http://mall.nbcb.com.cn/mall/help/helpInfo.action?help.id=10537">注册商城</a></li><li><a href="http://mall.nbcb.com.cn/mall/help/helpInfo.action?help.id=10538">忘记密码</a></li></ul></div><div class="details_plan_bottom"><h3 class="details_plan_bottom_2">积分计划</h3><ul><li><a href="http://mall.nbcb.com.cn/mall/help/helpInfo.action?help.id=10540">积分规则</a></li><li><a href="http://mall.nbcb.com.cn/mall/help/helpInfo.action?help.id=10541">积分当钱花</a></li></ul></div><div class="details_plan_bottom"><h3 class="details_plan_bottom_3">购物与支付</h3><ul><li><a href="http://mall.nbcb.com.cn/mall/help/helpInfo.action?help.id=10542">购物流程</a></li><li><a href="http://mall.nbcb.com.cn/mall/help/helpInfo.action?help.id=10031">订单查看</a></li></ul></div><div class="details_plan_bottom"><h3 class="details_plan_bottom_6">售后配送</h3><ul><li><a href="http://mall.nbcb.com.cn/mall/help/helpInfo.action?help.id=10544">商品配送</a></li><li><a href="http://mall.nbcb.com.cn/mall/help/helpInfo.action?help.id=10543">商品售后</a></li></ul></div><div class="details_plan_bottom"><h3 class="details_plan_bottom_7">特色功能</h3><ul><li><a href="http://mall.nbcb.com.cn/mall/help/helpInfo.action?help.id=10146">快速购买</a></li></ul></div><div class="details_clear"></div></div>
+  
+  
+  <div class="details_clear"></div>
+  
+  <div class="details_footer">
+    <p>
+    	<a href="http://mall.nbcb.com.cn/mall/help/tipInfo.action?tip.id=10022">隐私条款</a>|<a href="http://mall.nbcb.com.cn/mall/help/tipInfo.action?tip.id=10023">联系我们</a>|<a href="http://mall.nbcb.com.cn/mall/help/tipInfo.action?tip.id=10021">法律申明</a>
+    </p>
+    
+    
+    <p>©银行卡商城 2015 – 版权所有 沪ICP备11039870号-2</p>
+    <p style=" color:#999999; width:550px; margin:0 auto;">银行卡商城免责声明：本银行卡商城所提供商品或服务信息均由第三方供应商提供，本行仅为相关信息提供链接和支付结算服务，对交易不作任何担保。</p>
+  </div>
+</div>
+</body>
+</html>
+<script type="text/javascript">
+	$(document).ready(function(){
+		if('' != ''){
+			$("#navigateIndex_" + '').addClass("details_nav_now2");
+		}
+		//获取购物车中商品数量
+		getCookieProductAmount();
+		if("1"==0){
+			//验证是否登陆
+			//validateIsLogin();
+			//if(isLogin){
+				//$("#changeInfo").html("我能换什么");
+				//当鼠标放在“我能换什么”时，下面显示出自己的卡片
+				//initMenu();
+			//}else{
+				//$("#changeInfo").html("查询我的积分");
+			//}
+			//获取信用卡积分、商城积分、信用卡名称、商城积分名称和用户昵称
+			getTopBonus();
+		}
+	});
+	
+    String.prototype.trim=function(){return this.replace(/(^\s*)|(\s*$)/g, "");}
+　　 String.prototype.ltrim=function(){return this.replace(/(^\s*)/g,"");}
+　　 String.prototype.rtrim=function(){ return this.replace(/(\s*$)/g,"");}
+	
+    function productSearch(){
+		$('#search-keyword').focus();
+		if($('#search-keyword').val() == null || $('#search-keyword').val().trim() == '' || '输入关键词' == $('#search-keyword').val())
+		{
+		   $('#search-keyword').val('');
+		   alert('请输入查询条件！');
+		}
+		else
+		{
+		   $('#searchForm').attr('action',applicationContextPath + '/product/productSearchList.action');
+		   $('#searchForm').submit();
+		}
+    }
+    
+    function quickSearch(keyword){
+    	$('#search-keyword').val(keyword);
+    	productSearch();
+    }
+	
+	//获取购物车中商品的数量    
+    function getCookieProductAmount(){
+    	$.ajax({
+		   type: "POST",
+		   url: "/mall" + "/cart/getCookieProductAmount.action",
+		   data : "",
+		   success: function(msg){
+		   	  $("#cookie_product_amount").html(msg);
+		   }
+		});
+    	
+    }
+    
+	//获取信用卡积分、商城积分、信用卡名称、商城积分名称和用户昵称
+	function getTopBonus(){
+		$.ajax({
+			   type: "POST",
+			   url: "/mall" + "/member/credit/ajaxGetMemberInfo.action",
+			   data : "",
+			   dataType:'json',
+			   success: function(msg){
+				   if("1" == msg[0].status){
+						$("#creditBonusName").html(msg[0].creditBonusName + "积分：<span>"+msg[0].bankBonus+"分</span>");
+						$("#mallBonusName").html(msg[0].ecomBonusName + "：<span>"+msg[0].ecomBonus+"分</span>");
+						$("#changeInfo").html("我能换什么");
+						$("#changeInfo").attr('href','#');
+						$("#pointRange").val('1-'+(parseInt(msg[0].ecomBonus)+parseInt(msg[0].bankBonus)));
+						$("#changeInfo").click(
+						function(){
+							$("#qryPointRange").submit();
+						});
+				   }else{
+						$("#creditBonusName").html(msg[0].creditBonusName + "积分：<span>"+0+"分</span>");
+						$("#mallBonusName").html(msg[0].ecomBonusName + "：<span>"+0+"分</span>");
+				   }
+			   }
+			});
+	}
+	
+	
+    function searchKeyDown(event){
+    	var e = event || window.event || arguments.callee.caller.arguments[0];
+        if(e && e.keyCode==13){ // enter 键
+        	if($('#search-keyword').val() == null || $('#search-keyword').val().trim() == '' || '输入关键词' == $('#search-keyword').val()){
+        		
+        	}else{
+        		productSearch();
+        	}
+        }
+    }
+    
+    function validateSearch(){
+    	if($('#search-keyword').val() == null || $('#search-keyword').val().trim() == '' || '输入关键词' == $('#search-keyword').val()){
+        	return false;
+        }
+        return true;
+    }
+    
+    function initMenu(){
+    	var _speed = 400; // in ms
+    	var _hold = $('.detalis_top_right_4');
+    	var _t = null;
+    	if(_hold.length){
+    		var _list = _hold.children();
+    		_list.each(function(){
+    			var _el = $(this);
+    			var _box = _el.children('.detalis_top_right_5');
+    			var _sub = _box.children();
+    			_box.show().width(_sub.outerWidth()).hide();
+    			_el.mouseenter(function(){
+    			var _this = this;
+    				_t = setTimeout(function(){
+    					$(_this).css('zIndex', 10);
+    					_el.addClass('hover');
+    					if(_box.is(':hidden')){
+    						_box.show();
+    						_sub.css('marginTop', -_sub.outerHeight());
+    					}
+    					_sub.stop().animate({marginTop: 0}, _speed);
+    				},0)
+    			}).mouseleave(function(){
+    				if(_t) clearTimeout(_t);
+    				var _this = $(this);
+    				$(this).css('zIndex', 5);
+    				if(_sub.length){
+    					_sub.stop().animate({marginTop: -_sub.outerHeight()}, _speed, function(){
+    						_box.hide();
+    						_el.removeClass('hover');
+    						_this.css('zIndex', 1);
+    					});
+    				}else{
+    					_el.removeClass('hover');
+    				}
+    			});
+    		});
+    	}
+    }
+</script>
+

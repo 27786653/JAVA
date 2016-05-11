@@ -1,0 +1,778 @@
+﻿
+
+
+
+
+
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="initial-scale=1, width=device-width, maximum-scale=1, user-scalable=no">
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name='apple-touch-fullscreen' content='yes'>
+<meta name="full-screen" content="yes">
+<meta name="format-detection" content="telephone=no" />
+
+
+
+
+
+<title>汇通微商城</title>
+
+<link href="css/common.css" rel="stylesheet" type="text/css">
+<script src="js/jquery.js"></script>
+<script src="js/json_parse.js"></script>
+<script src="js/common.js"></script>
+
+<script type="text/javascript">
+	//js全局项目路径
+	var applicationContextPath = '/mall';
+	var imagePath='http://img.leagcard.com/cms/online';
+	var installmentFlag = '1';// 是否支持分期
+	function pageBack() {
+		var a = window.location.href;
+		if (/#top/.test(a)) {
+			window.history.back(-2);
+			window.location.load(window.location.href);
+		} else {
+			window.history.back(-1);
+			window.location.load(window.location.href);
+		}
+	}
+
+	function chiosePage(titleId) {
+		$("#headerTitle a").removeClass("active");
+		$("#" + titleId).addClass("active");
+		//移动到选中菜单
+		$("#headerTitle a").each(function(i,obj){
+			if(obj.id == titleId){
+				$(obj).addClass("cur");
+			} else {
+				$(obj).removeClass("cur");
+			}
+		});
+	}
+	/*搜索*/
+	function entersearch(keyword, productType){
+		/* if(keyword == null || keyword.trim() == ''){
+			alert("请输入搜索条件!");
+			return false;
+		} */
+		var event = window.event || arguments.callee.caller.arguments[0];
+        if (event.keyCode == 13 || event.button == 0)
+        {
+        	var url = '/mall/weiproduct/weiProductList.action?keyword='+keyword + '&productType=' + productType + '&productCtg=';
+        	/* if($("#pointCondition").val() != '' && $("#pointCondition").val() > 0){
+        		url += '&pointCondition=' + $("#pointCondition").val();
+        	} */
+        	window.location.href = url;
+        }
+	}
+	
+	/*综合搜索*/
+	function entersearchProduct(keyword){
+		/* if(keyword == null || keyword.trim() == ''){
+			alert("请输入搜索条件!");
+			return false;
+		} */
+		var event = window.event || arguments.callee.caller.arguments[0];
+	    if (event.keyCode == 13 || event.button == 0)
+	    {
+	    	var url = '/mall/weiproduct/weiSearchProductList.action?productCtg=&classType=&keyword='+keyword;
+	    	/* if($("#pointCondition").val() != '' && $("#pointCondition").val() > 0){
+	    		url += '&pointCondition=' + $("#pointCondition").val();
+	    	} */
+	    	window.location.href = url;
+	    }
+	}
+	/*综合搜索*/
+	function insearchProduct(classType,keyword){
+		/* if(keyword == null || keyword.trim() == ''){
+			alert("请输入搜索条件!");
+			return false;
+		} */
+		var event = window.event || arguments.callee.caller.arguments[0];
+	    if (event.keyCode == 13 || event.button == 0)
+	    {
+	    	var url = '/mall/weiproduct/weiSearchProductList.action?productCtg=&classType='+classType+'&keyword='+keyword;
+	    	/* if($("#pointCondition").val() != '' && $("#pointCondition").val() > 0){
+	    		url += '&pointCondition=' + $("#pointCondition").val();
+	    	} */
+	    	window.location.href = url;
+	    }
+	}
+	/*综合搜索菜单筛选*/
+	function searchProductCtg(classType, productCtg) {
+		window.location.href = applicationContextPath + '/weiproduct/weiSearchProductList.action?productCtg=' + productCtg + '&classType=' + classType + '&keyword=';
+	}
+	
+	/*综合搜索积分范围筛选*/
+	function searchPointRange(classType, pointRange) {
+		window.location.href = '/mall/weiproduct/weiSearchProductList.action?classType=' + classType + '&keyword=&pointRange=' + pointRange + '&orderType=price&orderSortBy=desc';
+	}
+	
+	function changeHeaderTtile(title){
+		try {
+			$("#header .center").html(title);
+		} catch (e) {
+			
+		}
+	}
+	
+	/*菜单筛选*/
+	function selectproductCtg(productType, productCtg) {
+		window.location.href = '/mall/weiproduct/weiProductList.action?productType=' + productType + '&productCtg=' + productCtg;
+	}
+	
+	/*积分范围筛选*/
+	function selectPointRange(productType, pointRange) {
+		window.location.href = '/mall/weiproduct/weiProductList.action?productType=' + productType + '&pointRange=' + pointRange + '&orderType=price&orderSortBy=desc';
+	}
+</script>
+
+</head>
+<body>
+	<div class="body_frame" style="
+		
+		
+			padding-top:38px;
+		">
+		
+		
+			<link href="css/mall_only.css" rel="stylesheet" type="text/css">
+		
+		
+		<header>
+			<div class="head" id="header" style="display: none;">
+                <div class="LR"><a id="btnGoBack" href="javascript:pageBack()" class="back"><img src="picture/icon_back.png"></a></div>
+                <div class="center"></div>
+                <div class="LR">
+                	<a href="/mall/weiindex/weiShopIndex.action" class="home" style="">
+                		<img src="picture/iconmenu_home_active.png">
+                	</a>
+                </div>
+            </div>
+			
+				<!--组件依赖css begin-->
+				<link rel="stylesheet" type="text/css" href="css/navigator.css" />
+				<link rel="stylesheet" type="text/css" href="css/navigator.iscroll.css" />
+				<!--组件依赖css end-->
+				<!--组件依赖js begin-->
+				<script type="text/javascript" src="js/zepto.min.js"></script>
+				<script type="text/javascript" src="js/zepto.extend.js"></script>
+				<script type="text/javascript" src="js/zepto.ui.js"></script>
+				<script type="text/javascript" src="js/zepto.iscroll.js"></script>
+				<script type="text/javascript" src="js/navigator.js"></script>
+				<script type="text/javascript" src="js/navigator.iscroll.js"></script>
+				<!--组件依赖js end-->
+				<div id="headerTitle" class="box_classify" style="overflow: hidden;">
+					<ul>
+					
+						<li><a href="/mall/weiindex/weiShopIndex.action" id="shoppingMall">微商城</a></li>
+					
+						<li><a href="/mall/weiindex/weiCreditIndex.action" id="creditsExchange">俏积分</a></li>
+					
+					</ul>
+				</div>
+				<script type="text/javascript">
+					try{
+						var realWidth = 0;
+						$("#headerTitle ul li a").each(function(i,obj){
+							realWidth += $(obj).width() + 20;
+						});
+						realWidth += 2;// 预留2px边框，防止最后一个掉下来
+						if(realWidth < $(window).width()){
+							$("#headerTitle ul").width(realWidth);// 设置ul宽度
+							$("#headerTitle").attr("align","center");// 居中
+						} else {
+							Zepto(function(){
+								/*组件初始化js begin*/
+								Zepto('#headerTitle').navigator();   //smart setup方式创建 推荐方式
+							});
+						}
+					} catch(e){
+						
+					}
+				</script>
+			
+		</header>
+		<!-- include -->
+		
+
+
+
+
+
+<script src="js/jquery.bxslider.min.js"></script>
+<link href="css/jquery.bxslider.css" type="text/css" rel="stylesheet">
+ 
+<script type="text/javascript">
+	$(function(){
+		$('.slider1').bxSlider({ //slider1是需要展示的横向流布局的DIV
+		/*slideWidth: 200,*/   //每个横向流布局图片的团度
+		minSlides: 1,		//每隔横向流布局最少要有几个图片
+		maxSlides: 1,      //每个横向流布局最多展示几个图片
+		slideMargin: 3,		//每个很想流布局之间的宽度
+		auto: true
+		});
+	});
+	chiosePage('shoppingMall');
+	changeHeaderTtile($("#shoppingMall").text());
+	/**
+	 * 时间限制转换为日期对象
+	 */
+	function formatDatesFromStr(timeStr){
+		if(timeStr == null || timeStr.trim() == '' || timeStr.indexOf("-") == -1){
+			return null;
+		}
+		var timeStrs = timeStr.split("-");
+		var dates = new Array();
+		for (var i=0;i < timeStrs.length;i++){
+			var oriTimeStr = timeStrs[i];
+			dates[i] = formatDate(oriTimeStr);
+		}
+		return dates;
+	}
+
+
+	function formatDate(s){
+		var oriTimeStr = s;
+		var tmpStr = "";
+		if(oriTimeStr.length >= 8){
+			tmpStr += oriTimeStr.substring(0,4);
+			tmpStr += "/";
+			tmpStr += oriTimeStr.substring(4,6);
+			tmpStr += "/";
+			tmpStr += oriTimeStr.substring(6,8);
+		}else {
+			return null;
+		}
+		
+		if (oriTimeStr.length >= 10) {
+			tmpStr += " ";
+			tmpStr += oriTimeStr.substring(8,10);
+		}
+		if (oriTimeStr.length >= 12) {
+			tmpStr += ":";
+			tmpStr += oriTimeStr.substring(10,12);
+		}
+		if (oriTimeStr.length >= 14) {
+			tmpStr += ":";
+			tmpStr += oriTimeStr.substring(12,14);
+		}
+		var d = new Date(tmpStr);
+		if(oriTimeStr.length >=14){
+			var milisecends = oriTimeStr.substring(14);
+			d.setMilliseconds(milisecends);
+		}
+		return d;
+	}
+	
+
+	/**
+	 * 加载中
+	 */
+	function initLoadingTitle(flag){
+		if(flag){
+			$("#limitTitle").hide();
+			$("#limitTime").hide();
+			$("#limitTitle_loading").show();
+		} else {
+			$("#limitTitle_loading").hide();
+			$("#limitTitle").show();
+			$("#limitTime").show();
+		}
+	}
+
+	var upateCount = 0;
+	function updateKillInfo(){
+		//移除js interval
+		window.clearInterval(timerCount);
+		timerCount = null;
+		//显示正在更新数据
+		initLoadingTitle(true);
+		//ajax请求优先级最高的秒杀数据(秒杀时间串)
+		upateCount++;
+		$.ajax({
+			url: applicationContextPath + "/weiindex/queryKillInfo.action?productType=2",
+			type: "POST",
+			data: {'d':new Date().getTime()},
+			success: function(data){
+				//根据响应数据进行处理
+				if(data.status != "SUCCESS"){
+					if(upateCount > 5){
+						upateCount = 0;// 重置次数
+						return;
+					} else {
+						updateKillInfo();// 再次请求数据
+					}
+					return ;
+				}
+				if (data.killStatus == "1") {
+					//1、有秒杀，再次调用initCountDown(dates)更新倒计时
+					var dates = formatDatesFromStr(data.killTime);
+					nowDate = new Date(data.nowDate.time);
+					initCountDown(dates);
+					initLoadingTitle(false);
+				} else {
+					//2、无秒杀，隐藏秒杀广告位，显示无秒杀广告位
+					$("#seckillAd").hide();
+					$("#noSeckillAd").show();
+				}
+			},
+			error: function(){
+				console.log("updateKillInfo()更新秒杀信息失败");
+			}
+		});
+	}
+
+	var timerCount ;
+	/**
+	 * 倒计时
+	 */
+	function countDown(intDiff){
+		timerCount = window.setInterval(function(){
+		var day=0,
+			hour=0,
+			minute=0,
+			second=0;//时间默认值		
+		if(intDiff > 0){
+			day = Math.floor(intDiff / (60 * 60 * 24));
+			hour = Math.floor(intDiff / (60 * 60)) - (day * 24);
+			minute = Math.floor(intDiff / 60) - (day * 24 * 60) - (hour * 60);
+			second = Math.floor(intDiff) - (day * 24 * 60 * 60) - (hour * 60 * 60) - (minute * 60);
+		}else{
+			//location.reload(true);//刷新页面
+			dates = null;
+			updateKillInfo();// 更新秒杀数据
+		}
+		if (day <= 9) day = '0' + day;
+		if (hour <= 9) hour = '0' + hour;
+		if (minute <= 9) minute = '0' + minute;
+		if (second <= 9) second = '0' + second;
+		$('#day_show_0').html(('' + day).charAt(0));
+		$('#day_show_1').html(('' + day).charAt(1));
+		if(day != '00'){
+			$('#day_show_0').show();
+			$('#day_show_1').show();
+			$('#day_show_label').show();
+		}
+		$('#hour_show_0').html(('' + hour).charAt(0));
+		$('#hour_show_1').html(('' + hour).charAt(1));
+		$('#minute_show_0').html(('' + minute).charAt(0));
+		$('#minute_show_1').html(('' + minute).charAt(1));
+		$('#second_show_0').html(('' + second).charAt(0));
+		$('#second_show_1').html(('' + second).charAt(1));
+		intDiff--;
+		if(intDiff == -1)// 结束倒计时
+			return;
+		}, 1000);
+	}
+		    
+	function initCountDown(dates){
+		if(dates == null){
+			// 无秒杀
+			return ;
+		}
+		var startDate = dates[0];
+		var endDate = dates[1];
+		var limitTitle = "本场已结束：";
+		var countTime = 0; 
+		if(nowDate <= startDate){
+			//未开始
+			//距离本场开始还有：
+			limitTitle = "距本场开始还有：";
+			countTime = startDate - nowDate;
+		} else if (nowDate <= endDate) {
+			//正在秒杀
+			//距离本场结束还有：
+			limitTitle = "距本场结束还有：";
+			countTime = endDate - nowDate;
+		}
+		$("#limitTitle").html(limitTitle);
+		countDown(countTime / 1000);
+	}
+	var nowDate = new Date(1462938746667);//当前时间
+
+</script>
+	<div class="box_gallery">
+	
+		<div class="slider1">
+			
+				<div class="slide">
+					<a href="/mall/weiproduct/weiProductList.action?keyword=孩之宝&productType=2&productCtg=">
+						<img src="picture/120507-616074006.jpg">
+					</a>
+				</div>
+			
+				<div class="slide">
+					<a href="/mall/weiproduct/weiProductList.action?keyword=%E9%A3%9E%E4%BA%9A%E8%BE%BE&productType=2&productCtg=">
+						<img src="picture/0959561817611578.jpg">
+					</a>
+				</div>
+			
+				<div class="slide">
+					<a href="/mall/weiproduct/weiProductList.action?keyword=%E5%9C%A3%E6%96%97%E5%A3%AB&productType=2&productCtg=">
+						<img src="picture/092525-20861346.jpg">
+					</a>
+				</div>
+			
+				<div class="slide">
+					<a href="/mall/weiproduct/weiProductList.action?keyword=%E9%A3%9E%E4%BA%9A%E8%BE%BE&productType=2&productCtg=">
+						<img src="picture/1015141256927573.jpg">
+					</a>
+				</div>
+			
+				<div class="slide">
+					<a href="/mall/weiproduct/weiProductList.action?keyword=大金&productType=2&productCtg=">
+						<img src="picture/120728-241237025.jpg">
+					</a>
+				</div>
+			
+				<div class="slide">
+					<a href="/mall/weiproduct/weiProductList.action?keyword=苹果手表&productType=2&productCtg=">
+						<img src="picture/170409-1033967765.jpg">
+					</a>
+				</div>
+			
+		</div>
+	
+	</div>
+	<!--searchStart-->
+	<div class="box_filter">
+		<a class="links"  onClick="oper_sub('box_type')" style="">
+			<img src="picture/icon_type.png" style="height: 30px;width: 30px;">
+			<!-- <span>分类</span> -->
+		</a>
+		<a href="/mall/weiorder/weiQueryOrderIndex.action" class="links" style="">
+			<img src="picture/icon_user.png" style="height: 30px;width: 30px;">
+			<!-- <span>我</span> -->
+		</a>
+		<div id="box_type" class="box_type" style="display:none;">
+			<a onClick="oper_sub('box_type');selectproductCtg('2','')">全部商品</a>
+			
+				<a onClick="oper_sub('box_type');selectproductCtg('2','357')">家用电器、汽车用品</a>
+			
+				<a onClick="oper_sub('box_type');selectproductCtg('2','359')">手机数码</a>
+			
+				<a onClick="oper_sub('box_type');selectproductCtg('2','360')">电脑、办公</a>
+			
+				<a onClick="oper_sub('box_type');selectproductCtg('2','361')">家居、厨具、家装</a>
+			
+				<a onClick="oper_sub('box_type');selectproductCtg('2','363')">个人护理、化妆品</a>
+			
+				<a onClick="oper_sub('box_type');selectproductCtg('2','364')">贵金属</a>
+			
+				<a onClick="oper_sub('box_type');selectproductCtg('2','365')">运动健康</a>
+			
+				<a onClick="oper_sub('box_type');selectproductCtg('2','366')">母婴、玩具、图书期刊</a>
+			
+				<a onClick="oper_sub('box_type');selectproductCtg('2','1067')">箱包、奢侈品</a>
+			
+				<a onClick="oper_sub('box_type');selectproductCtg('2','2570')">绿色特产、酒类食品</a>
+			
+		</div>
+		<div class="box_search" style="">
+			<input id="keyword" type="text" placeholder="请输入搜索关键字" value="">
+			<a onclick="entersearch($('#keyword').val(),'2');"></a>
+		</div>
+		
+	</div>
+	<!--searchEnd-->
+	<!--listStart-->
+        <div class="box_modules shop">
+        	
+	            <table cellpadding="0" cellspacing="0">
+	              <tr>
+	                <td width="45%" rowspan="2">
+	                	
+	               			
+		                		<a id="seckillAd" href="/mall/weiproduct/weiProductSeckillList.action?productType=2" class="LA">
+			                    	<span>疯狂星期三</span>
+			                        <font id="limitTitle"></font>
+			                        <font id="limitTitle_loading" style="display: none;">活动加载中...</font>
+			                    	<h5 id="limitTime">
+			                    		<label id="day_show_0" style="display: none;">0</label>
+			                    		<label id="day_show_1" style="display: none;">0</label>
+			                    		<em id="day_show_label" style="display: none;">天</em>
+			                    		<label id="hour_show_0">0</label>
+			                    		<label id="hour_show_1">0</label>
+			                    		<em>:</em>
+			                    		<label id="minute_show_0">0</label>
+			                    		<label id="minute_show_1">0</label>
+			                    		<em>:</em>
+			                    		<label id="second_show_0">0</label>
+			                    		<label id="second_show_1">0</label>
+			                    	</h5>
+			                    	<img src="picture/150118-807052275.png">
+			                    </a>
+	               			
+	               			
+	                			<a id="noSeckillAd" style="display: none;"  class="LA">
+			                    	<img src="picture/105503-645491269.png">
+			                    </a>
+	                		
+	               			<script type="text/javascript">
+               					//初始化倒计时
+	               				$(function(){
+	               					//var dates = formatDatesFromStr('201605111600-201605171600');// 限时时间区间
+	               					//initCountDown(dates);
+	               					updateKillInfo();
+	               				});
+	               			</script>
+	                	
+	                	
+	                </td>
+	                <td>
+	                	
+		                	<a href="/mall/weiproduct/weiProductList.action?productType=1&productCtg=10760" class="RO">
+		                    	<span>NB馆</span>
+		                        <font>地方特色</font>
+		                    	<img src="picture/145916-1031170404.png">
+		                    </a>
+	                	
+	                </td>
+	              </tr>
+	              <tr>
+	                <td>
+	                	
+		                	<a href="/mall/weiproduct/weiProductList.action?productType=2&productCtg=10700" class="ROL br">
+		                    	<span>团一团</span>
+		                        <font>热门团购疯抢</font>
+		                    	<img src="picture/145937-1465024636.png">
+		                    </a>
+	                	
+	                	
+		                	<a href="/mall/weiproduct/weiProductRankList.action?productType=2" class="ROL">
+		                    	<span>热门推荐</span>
+		                        <font>热门商品推荐</font>
+		                    	<img src="picture/145956327245371.png">
+		                    </a>
+	                	
+	                </td>
+	              </tr>
+	            </table>
+            
+        </div>
+        <!--listEnd-->
+        <!--NB馆Start-->
+        
+        <!--NB馆End-->
+		
+		<!--手机数码Start-->
+		
+			
+		        <div class="box_block">
+		            <div class="title">
+		                <span class="blue">黄金屋</span>
+		                <a href="/mall/weiproduct/weiProductList.action?productType=2&amp;productCtg=364" class="more">更多</a>
+		            </div>
+		            <div class="box_oneATwo">
+		            	<a
+		            	 
+		            	 href="/mall/weiproduct/weiProductList.action?productType=2&amp;productCtg=364"
+		            	 class="LOne">
+		            	 	<img src="picture/134237-1977088596.jpg">
+		            	 </a>
+		                
+							
+				                <a href="/mall/weiproduct/weiProductDetail.action?product.id=30493" class="RTwo Rtop">
+				                	<img src="picture/12184546728356.jpg">
+				                    <span>飞亚达（FIYTA）心弦系列机械女士手表 LA869002.PWLD</span>
+				                    
+				                    	<font>¥<label>292.50*12期</label></font>
+				                    
+				                    
+				                </a>
+			                
+						
+							
+				                <a href="/mall/weiproduct/weiProductDetail.action?product.id=29926" class="RTwo ">
+				                	<img src="picture/1154221316961710.jpg">
+				                    <span>汉今 金猴送福版张纯金邮票珍藏 1.5g金*1枚+邮票*12版张（共240枚）</span>
+				                    
+				                    	<font>¥<label>298.34*12期</label></font>
+				                    
+				                    
+				                </a>
+			                
+						
+		            </div>
+		        </div>
+			
+		        <div class="box_block">
+		            <div class="title">
+		                <span class="blue">数码家电</span>
+		                <a href="/mall/weiproduct/weiProductList.action?productType=2&amp;productCtg=359" class="more">更多</a>
+		            </div>
+		            <div class="box_oneATwo">
+		            	<a
+		            	 
+		            	 href="/mall/weiproduct/weiProductList.action?productType=2&amp;productCtg=359"
+		            	 class="LOne">
+		            	 	<img src="picture/134151-1978935638.jpg">
+		            	 </a>
+		                
+							
+				                <a href="/mall/weiproduct/weiProductDetail.action?product.id=31041" class="RTwo Rtop">
+				                	<img src="picture/150540-1306901014.jpg">
+				                    <span>苹果 iPhoneSE 64G 玫瑰金 移动联通电信4G手机 赠手机壳+钢化膜</span>
+				                    
+				                    	<font>¥<label>357.34*12期</label></font>
+				                    
+				                    
+				                </a>
+			                
+						
+							
+				                <a href="/mall/weiproduct/weiProductDetail.action?product.id=29666" class="RTwo ">
+				                	<img src="picture/155335-1939106156.jpg">
+				                    <span>亚马逊 Kindle voyage电子书阅读器珍藏限量版</span>
+				                    
+				                    	<font>¥<label>326.34*6期</label></font>
+				                    
+				                    
+				                </a>
+			                
+						
+		            </div>
+		        </div>
+			
+		        <div class="box_block">
+		            <div class="title">
+		                <span class="blue">日常用品</span>
+		                <a href="/mall/weiproduct/weiProductList.action?productType=2&amp;productCtg=361" class="more">更多</a>
+		            </div>
+		            <div class="box_oneATwo">
+		            	<a
+		            	 
+		            	 href="/mall/weiproduct/weiProductList.action?productType=2&amp;productCtg=361"
+		            	 class="LOne">
+		            	 	<img src="picture/142643-1187855764.jpg">
+		            	 </a>
+		                
+							
+				                <a href="/mall/weiproduct/weiProductDetail.action?product.id=30083" class="RTwo Rtop">
+				                	<img src="picture/092846-1895409246.jpg">
+				                    <span>欧琳 水槽双槽套餐 JBS2T-OLWG7212A</span>
+				                    
+				                    	<font>¥<label>166.50*6期</label></font>
+				                    
+				                    
+				                </a>
+			                
+						
+		            </div>
+		        </div>
+			
+		
+		 <!--手机数码End-->
+        <!--menuStart-->
+       
+        <!--menuEnd-->
+       <!--  <div style="height: 20px;width: 100%;"></div> -->
+        <!-- 版权 -->
+		<footer class="copyright">银行卡商城 2015 – 版权所有 沪ICP备11039870号-2</footer>
+	</div>
+	
+	
+	 <div id="popup_fail" style="display: none">
+        <!--maskStart-->    
+            <div class="mask"></div>
+        <!--maskEnd-->        
+            <div class="popup">
+                <div class="title">
+                    <div class="LR"></div>
+                    <div class="center">提示</div>                
+                    <div class="LR"><a title="关闭" class="close" onClick="closeFail()"></a></div>                
+                </div>
+                <div class="oper_tips">
+                    <img align="absmiddle" src="picture/icon_alert.png"><span id="failMessage">对不起，操作失败！</span>
+                </div>
+            </div>
+        </div>
+        
+      <div id="popup_succ" style="display: none">
+      <!--maskStart-->    
+          <div class="mask"></div>
+      <!--maskEnd-->        
+          <div class="popup">
+              <div class="title">
+                  <div class="LR"></div>
+                  <div class="center">提示</div>                
+                  <div class="LR"><a title="关闭" class="close" onClick="closeSuccess()"></a></div>                
+              </div>
+              <div class="oper_tips">
+                  <img align="absmiddle" src="picture/icon_complete.png"><span id="succMessage">恭喜您，操作成功！</span>
+              </div>
+          </div>
+      </div>
+
+	<div id="popup_confirm" style="display: none;">
+		<!--maskStart-->
+		<div class="mask"></div>
+		<!--maskEnd-->
+		<div class="popup">
+			<div class="title">
+				<div class="LR"></div>
+				<div class="center">提示</div>
+				<div class="LR">
+					<a title="关闭" class="close" onClick="closePopupConfirm()"></a>
+				</div>
+			</div>
+			<div class="oper_tips">
+				<img align="absmiddle" src="picture/icon_alert.png">
+				<span id="confirmMessage">提示信息</span>
+			</div>
+			<div class="box_btns">
+				<a id="btn_cancel" onClick="closePopupConfirm()" class="blur">取&nbsp;&nbsp;消</a>
+				<a href="javascript:void(0);" id="btn_sub">确&nbsp;&nbsp;定</a>
+			</div>
+		</div>
+	</div>
+	<div id="popup_waiting" style="display: none">
+      <!--maskStart-->    
+          <div class="mask"></div>
+      <!--maskEnd-->        
+          <div class="popup" align="center">
+			<img align="absmiddle" src="picture/bx_loader.gif">
+          </div>
+      </div>
+	
+</body>
+</html>
+<script type="text/javascript">
+	function showSuccess(message) {
+		$("#popup_succ").css("display", "block");
+		$("#popup_succ #succMessage").html(message);
+	};
+	function closeSuccess() {
+		$("#popup_succ").css("display", "none");
+	};
+	function showFail(message) {
+		$("#popup_fail").css("display", "block");
+		$("#popup_fail #failMessage").html(message);
+	};
+	function closeFail() {
+		$("#popup_fail").css("display", "none");
+	};
+
+	/**
+	 * alertConfirm弹出
+	 * @param {} message
+	 * @param {} bindEvent 回调函数
+	 */
+	function showConfirmMessage(message,bindEvent){
+		$("#popup_confirm").css("display", "block");
+		$("#popup_confirm #confirmMessage").html(message);
+		$("#btn_sub").removeAttr("href");
+		$("#btn_sub").attr("href",bindEvent);
+	}
+	/**
+	 * 关闭alertConfirm弹出
+	 */
+	function closePopupConfirm(){
+		$("#popup_confirm").css("display","none");
+	}
+</script>

@@ -1,0 +1,1047 @@
+﻿
+
+
+
+
+
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="initial-scale=1, width=device-width, maximum-scale=1, user-scalable=no">
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name='apple-touch-fullscreen' content='yes'>
+<meta name="full-screen" content="yes">
+<meta name="format-detection" content="telephone=no" />
+
+
+
+
+
+<title>汇通微商城</title>
+
+<link href="css/common_3.css" rel="stylesheet" type="text/css">
+<script src="js/jquery.js"></script>
+<script src="js/json_parse.js"></script>
+<script src="js/common.js"></script>
+
+<script type="text/javascript">
+	//js全局项目路径
+	var applicationContextPath = '/mall';
+	var imagePath='http://img.leagcard.com/cms/online';
+	var installmentFlag = '1';// 是否支持分期
+	function pageBack() {
+		var a = window.location.href;
+		if (/#top/.test(a)) {
+			window.history.back(-2);
+			window.location.load(window.location.href);
+		} else {
+			window.history.back(-1);
+			window.location.load(window.location.href);
+		}
+	}
+
+	function chiosePage(titleId) {
+		$("#headerTitle a").removeClass("active");
+		$("#" + titleId).addClass("active");
+		//移动到选中菜单
+		$("#headerTitle a").each(function(i,obj){
+			if(obj.id == titleId){
+				$(obj).addClass("cur");
+			} else {
+				$(obj).removeClass("cur");
+			}
+		});
+	}
+	/*搜索*/
+	function entersearch(keyword, productType){
+		/* if(keyword == null || keyword.trim() == ''){
+			alert("请输入搜索条件!");
+			return false;
+		} */
+		var event = window.event || arguments.callee.caller.arguments[0];
+        if (event.keyCode == 13 || event.button == 0)
+        {
+        	var url = '/mall/weiproduct/weiProductList.action?keyword='+keyword + '&productType=' + productType + '&productCtg=359';
+        	/* if($("#pointCondition").val() != '' && $("#pointCondition").val() > 0){
+        		url += '&pointCondition=' + $("#pointCondition").val();
+        	} */
+        	window.location.href = url;
+        }
+	}
+	
+	/*综合搜索*/
+	function entersearchProduct(keyword){
+		/* if(keyword == null || keyword.trim() == ''){
+			alert("请输入搜索条件!");
+			return false;
+		} */
+		var event = window.event || arguments.callee.caller.arguments[0];
+	    if (event.keyCode == 13 || event.button == 0)
+	    {
+	    	var url = '/mall/weiproduct/weiSearchProductList.action?productCtg=359&classType=&keyword='+keyword;
+	    	/* if($("#pointCondition").val() != '' && $("#pointCondition").val() > 0){
+	    		url += '&pointCondition=' + $("#pointCondition").val();
+	    	} */
+	    	window.location.href = url;
+	    }
+	}
+	/*综合搜索*/
+	function insearchProduct(classType,keyword){
+		/* if(keyword == null || keyword.trim() == ''){
+			alert("请输入搜索条件!");
+			return false;
+		} */
+		var event = window.event || arguments.callee.caller.arguments[0];
+	    if (event.keyCode == 13 || event.button == 0)
+	    {
+	    	var url = '/mall/weiproduct/weiSearchProductList.action?productCtg=359&classType='+classType+'&keyword='+keyword;
+	    	/* if($("#pointCondition").val() != '' && $("#pointCondition").val() > 0){
+	    		url += '&pointCondition=' + $("#pointCondition").val();
+	    	} */
+	    	window.location.href = url;
+	    }
+	}
+	/*综合搜索菜单筛选*/
+	function searchProductCtg(classType, productCtg) {
+		window.location.href = applicationContextPath + '/weiproduct/weiSearchProductList.action?productCtg=' + productCtg + '&classType=' + classType + '&keyword=';
+	}
+	
+	/*综合搜索积分范围筛选*/
+	function searchPointRange(classType, pointRange) {
+		window.location.href = '/mall/weiproduct/weiSearchProductList.action?classType=' + classType + '&keyword=&pointRange=' + pointRange + '&orderType=price&orderSortBy=desc';
+	}
+	
+	function changeHeaderTtile(title){
+		try {
+			$("#header .center").html(title);
+		} catch (e) {
+			
+		}
+	}
+	
+	/*菜单筛选*/
+	function selectproductCtg(productType, productCtg) {
+		window.location.href = '/mall/weiproduct/weiProductList.action?productType=' + productType + '&productCtg=' + productCtg;
+	}
+	
+	/*积分范围筛选*/
+	function selectPointRange(productType, pointRange) {
+		window.location.href = '/mall/weiproduct/weiProductList.action?productType=' + productType + '&pointRange=' + pointRange + '&orderType=price&orderSortBy=desc';
+	}
+</script>
+
+</head>
+<body>
+	<div class="body_frame" style="
+		padding-top:44px;
+		">
+		
+		
+			<link href="css/mall_only_3.css" rel="stylesheet" type="text/css">
+		
+		
+		<header>
+			<div class="head" id="header" style="">
+                <div class="LR"><a id="btnGoBack" href="javascript:pageBack()" class="back"><img src="picture/icon_back.png"></a></div>
+                <div class="center"></div>
+                <div class="LR">
+                	<a href="/mall/weiindex/weiShopIndex.action" class="home" style="">
+                		<img src="picture/iconmenu_home_active.png">
+                	</a>
+                </div>
+            </div>
+			
+		</header>
+		<!-- include -->
+		
+
+
+
+
+
+
+<script type="text/javascript">
+var imagePath='http://img.leagcard.com/cms/online';
+var appPath='/mall';
+$(function(){
+	var productType = '2';
+	if('2' == productType){
+		chiosePage('shoppingMall');
+		changeHeaderTtile('微商城');
+	} else {
+		chiosePage('creditsExchange');
+		changeHeaderTtile('俏积分');
+	}
+	$("footer").css("display","none");
+});
+function submitForm(){
+	document.getElementById("searchForm").submit();
+}
+//加载排序
+var orderSortBy = "";
+var orderType = "";
+$(function(){
+	afterSort(orderType,orderSortBy);
+});
+/**
+ * 排序后按钮样式修改
+ * 获取&lt;div id="sor_img"&gt;下的两个&lt;img&gt;
+ * @param {} orderType
+ * @param {} orderSortBy
+ */
+function afterSort(orderType,orderSortBy){
+	var nowId = "pro_sort_" +orderType;
+	var imgs = $("#sort_img").children("img");
+	$("a[id^=pro_sort_]").each(function(i,obj){
+		$(obj).removeClass("active");
+		$(obj).children("img")[0].src = imgs[0].src;
+		if(nowId == obj.id){
+			//当前排序
+			$(obj).addClass("active");
+			if("asc" == orderSortBy){
+				//asc
+				$(obj).children("img")[0].src = imgs[1].src;
+			} else {
+				//desc
+				$(obj).children("img")[0].src = imgs[2].src;
+			}
+		}
+	});
+}
+ /**
+  * 切换排序
+  * @param {} id
+  */
+ function orderTab(id) {
+ 	if (id == orderType) {
+ 		if (orderSortBy == "desc") {
+ 			if (id == "newArriv" || id == "hot") {
+ 				return;
+ 			}
+ 			orderSortBy = "asc";
+ 		} else if (orderSortBy == "asc") {
+ 			orderSortBy = "desc";
+ 		}
+ 	} else {
+ 		orderSortBy = "desc";
+ 	}
+ 	orderType = id;
+ 	$("#orderType").val(orderType);
+ 	$("#orderSortBy").val(orderSortBy);
+ 	afterSort(orderType, orderSortBy);
+ 	initFirstPage();//显示第一页
+ 	$("#pageForm").submit();
+ }
+
+ /**
+  * 显示第一页
+  */
+ function initFirstPage(){
+ 	if(document.getElementById("page.currentPage")){
+ 		document.getElementById("page.currentPage").value = 1;
+ 	}
+ }
+</script>
+<!--searchStart-->
+	<div class="box_filter bTB">
+		
+			<a class="links" onClick="oper_sub('box_type')" style=""><img src="picture/icon_type.png" style="height: 30px;width: 30px;"><!-- <span>分类</span> --></a>
+		
+		
+		<div id="box_type" class="box_type" style="display:none;">
+			
+				<a  onClick="oper_sub('box_type');selectproductCtg('2','')">全部商品</a>
+				
+					<a  onClick="oper_sub('box_type');selectproductCtg('2','357')">家用电器、汽车用品</a>
+				
+					<a class="active" onClick="oper_sub('box_type');selectproductCtg('2','359')">手机数码</a>
+				
+					<a  onClick="oper_sub('box_type');selectproductCtg('2','360')">电脑、办公</a>
+				
+					<a  onClick="oper_sub('box_type');selectproductCtg('2','361')">家居、厨具、家装</a>
+				
+					<a  onClick="oper_sub('box_type');selectproductCtg('2','363')">个人护理、化妆品</a>
+				
+					<a  onClick="oper_sub('box_type');selectproductCtg('2','364')">贵金属</a>
+				
+					<a  onClick="oper_sub('box_type');selectproductCtg('2','365')">运动健康</a>
+				
+					<a  onClick="oper_sub('box_type');selectproductCtg('2','366')">母婴、玩具、图书期刊</a>
+				
+					<a  onClick="oper_sub('box_type');selectproductCtg('2','1067')">箱包、奢侈品</a>
+				
+					<a  onClick="oper_sub('box_type');selectproductCtg('2','2570')">绿色特产、酒类食品</a>
+					
+			
+			
+		</div>
+		<div class="box_search" style="">
+			<input type="text" placeholder="请输入搜索关键字" id="keyword" value=""/>
+			<a onclick="entersearch($('#keyword').val(),'2');"></a>
+		</div>
+		<a href="/mall/weiorder/weiQueryOrderIndex.action" class="links" id="my_center"  style=""><img src="picture/icon_user.png" style="height: 30px;width: 30px;"><!-- <span>我</span> --></a>
+	</div>
+      <!--searchEnd-->
+      
+      <!--sortStart-->
+      <div class="sort" style="display: none;">
+          <a id="pro_sort_newArriv" class="active bR" onclick="orderTab('newArriv')">新品<img align="absmiddle" src="picture/sort_bottom.png"></a>
+          <a id="pro_sort_price" class="bR" onclick="orderTab('price')" >价格<img align="absmiddle" src="picture/sort_top.png"></a>
+          <a id="pro_sort_hot" onclick="orderTab('hot')">销量<img align="absmiddle" src="picture/sort_top.png"></a>
+          <div id="sort_img" style="display: none;">
+        	<img align='absmiddle' src='picture/sort_top.png'>
+        	<img align='absmiddle' src='picture/sort_top.png'>
+        	<img align='absmiddle' src='picture/sort_bottom.png'>
+        </div>
+      </div>
+      <!--sortEnd-->
+      
+      <style type="text/css">
+      	.price2{
+      		font-size: 12px;color: #F00;
+      	}
+      	.price_unit{color: #999;font-size: 13px;}
+      </style>
+      
+      <!--listStart-->
+      
+	      <div class="box_list" id="boxList">
+	      	<ul style="width: 100%;">
+	      		
+	              <li>
+	                  <a href="/mall/weiproduct/weiProductDetail.action?product.id=31041">
+	                      <div class="img"><img src="picture/150540-1306901014.jpg"></div>
+	                      <div class="info">
+	                          <h4>苹果 iPhoneSE 64G 玫瑰金 移动联通电信4G手机 赠手机壳+钢化膜</h4>
+	                          <h5>
+	                          	 
+	                          		一小部的一大步，高性能4英寸iphone，6S同款A9芯片，1200万像素。
+	                          	
+	                          </h5>
+	                          <h6>
+	                          	
+				               
+			               			
+					               		￥<label>357.34*12期</label>
+					               		<span>￥4,288.00</span>
+			               			
+			               			
+				               
+	                          </h6>
+	                      </div>
+	                  </a>
+	              </li>
+		      	
+	              <li>
+	                  <a href="/mall/weiproduct/weiProductDetail.action?product.id=30441">
+	                      <div class="img"><img src="picture/102136-1306901014.jpg"></div>
+	                      <div class="info">
+	                          <h4>华为 P8高配版ROM双卡双待64G流光金 移动联通双4G手机</h4>
+	                          <h5>
+	                          	 
+	                          		光学防抖技术，纳米注塑，窄边框，纤薄机身，低光洞察力。
+	                          	
+	                          </h5>
+	                          <h6>
+	                          	
+				               
+			               			
+					               		￥<label>249.92*12期</label>
+					               		<span>￥2,999.00</span>
+			               			
+			               			
+				               
+	                          </h6>
+	                      </div>
+	                  </a>
+	              </li>
+		      	
+	              <li>
+	                  <a href="/mall/weiproduct/weiProductDetail.action?product.id=28913">
+	                      <div class="img"><img src="picture/142419-1306901014.jpg"></div>
+	                      <div class="info">
+	                          <h4>华为  Mate8 32GB版月光银全网通双卡双待4G手机</h4>
+	                          <h5>
+	                          	 
+	                          		高性能与长续航的再一次突破，搭载新一代旗舰芯片，多方位提升
+	                          	
+	                          </h5>
+	                          <h6>
+	                          	
+				               
+			               			
+					               		￥<label>266.59*12期</label>
+					               		<span>￥3,199.00</span>
+			               			
+			               			
+				               
+	                          </h6>
+	                      </div>
+	                  </a>
+	              </li>
+		      	
+	              <li>
+	                  <a href="/mall/weiproduct/weiProductDetail.action?product.id=28912">
+	                      <div class="img"><img src="picture/151435-1306901014.jpg"></div>
+	                      <div class="info">
+	                          <h4>华为 Mate8 128GB版 摩卡金 全网通4G手机 双卡双待</h4>
+	                          <h5>
+	                          	 
+	                          		快速高效的拍出一张质量上乘的照片
+	                          	
+	                          </h5>
+	                          <h6>
+	                          	
+				               
+			               			
+					               		￥<label>361.59*12期</label>
+					               		<span>￥4,339.00</span>
+			               			
+			               			
+				               
+	                          </h6>
+	                      </div>
+	                  </a>
+	              </li>
+		      	
+	              <li>
+	                  <a href="/mall/weiproduct/weiProductDetail.action?product.id=27580">
+	                      <div class="img"><img src="picture/162532-1306901014.jpg"></div>
+	                      <div class="info">
+	                          <h4>Fitbit flex智能乐活手环 FB401BK-CN</h4>
+	                          <h5>
+	                          	 
+	                          		了解您的睡眠，提高生活质量，查看来电，掌控通讯，记录您的锻炼，实现您的目标
+	                          	
+	                          </h5>
+	                          <h6>
+	                          	
+				               
+			               			
+					               		￥<label>243.00*3期</label>
+					               		<span>￥729.00</span>
+			               			
+			               			
+				               
+	                          </h6>
+	                      </div>
+	                  </a>
+	              </li>
+		      	
+	              <li>
+	                  <a href="/mall/weiproduct/weiProductDetail.action?product.id=24261">
+	                      <div class="img"><img src="picture/163042-110602077.jpg"></div>
+	                      <div class="info">
+	                          <h4>iPhone6sPlus64G 玫瑰金+COACH限量款手提斜跨女包（棕色）+COACH手腕包48179（红色）</h4>
+	                          <h5>
+	                          	 
+	                          		3D Touch,新一代Multi-Touch 1200万像素照片、4K视频，Live Photos 采用64位架构的A9芯片
+始于1941年的纽约皮具传奇COACH,拥有热门色彩与款式的实用奢侈品牌
+	                          	
+	                          </h5>
+	                          <h6>
+	                          	
+				               
+			               			
+					               		￥<label>416.63*24期</label>
+					               		<span>￥9,999.00</span>
+			               			
+			               			
+				               
+	                          </h6>
+	                      </div>
+	                  </a>
+	              </li>
+		      	
+	              <li>
+	                  <a href="/mall/weiproduct/weiProductDetail.action?product.id=25290">
+	                      <div class="img"><img src="picture/233938-2027025229.jpg"></div>
+	                      <div class="info">
+	                          <h4>易隆 USB安卓苹果数据充电线 黑色  WLU2</h4>
+	                          <h5>
+	                          	 
+	                          </h5>
+	                          <h6>
+	                          	
+				               
+			               			
+					               		￥<label>49.00*1期</label>
+					               		<span>￥49.00</span>
+			               			
+			               			
+				               
+	                          </h6>
+	                      </div>
+	                  </a>
+	              </li>
+		      	
+	              <li>
+	                  <a href="/mall/weiproduct/weiProductDetail.action?product.id=25289">
+	                      <div class="img"><img src="picture/232340-1625989202.jpg"></div>
+	                      <div class="info">
+	                          <h4>DBK迪比科10000毫安充电宝AliG3 阿狸萌宠1w移动电源苹果安卓通用 AliG3</h4>
+	                          <h5>
+	                          	 
+	                          		单纯小狐狸
+	                          	
+	                          </h5>
+	                          <h6>
+	                          	
+				               
+			               			
+					               		￥<label>128.00*1期</label>
+					               		<span>￥128.00</span>
+			               			
+			               			
+				               
+	                          </h6>
+	                      </div>
+	                  </a>
+	              </li>
+		      	
+	              <li>
+	                  <a href="/mall/weiproduct/weiProductDetail.action?product.id=15301">
+	                      <div class="img"><img src="picture/005253737306706.png"></div>
+	                      <div class="info">
+	                          <h4>华为 华为MATE7高配版 金</h4>
+	                          <h5>
+	                          	 
+	                          </h5>
+	                          <h6>
+	                          	
+				               
+			               			
+					               		￥<label>316.50*12期</label>
+					               		<span>￥3,798.00</span>
+			               			
+			               			
+				               
+	                          </h6>
+	                      </div>
+	                  </a>
+	              </li>
+		      	
+	              <li>
+	                  <a href="/mall/weiproduct/weiProductDetail.action?product.id=14321">
+	                      <div class="img"><img src="picture/142328-557330837.jpg"></div>
+	                      <div class="info">
+	                          <h4>苹果 Apple Watch Sport 38毫米银色铝金属表壳搭配白色运动型表带</h4>
+	                          <h5>
+	                          	 
+	                          		抬抬手腕，即可掌握更多
+	                          	
+	                          </h5>
+	                          <h6>
+	                          	
+				               
+			               			
+					               		￥<label>240.67*12期</label>
+					               		<span>￥2,888.00</span>
+			               			
+			               			
+				               
+	                          </h6>
+	                      </div>
+	                  </a>
+	              </li>
+		      	
+	              <li>
+	                  <a href="/mall/weiproduct/weiProductDetail.action?product.id=23321">
+	                      <div class="img"><img src="picture/142338-418802687.jpg"></div>
+	                      <div class="info">
+	                          <h4>苹果 Apple  iPhone 6s 64G 玫瑰金色 移动联通电信4G手机 赠手机壳+钢化膜  iPhone 6s 64G</h4>
+	                          <h5>
+	                          	 
+	                          		3D Touch,新一代Multi-Touch
+	                          	
+	                          </h5>
+	                          <h6>
+	                          	
+				               
+			               			
+					               		￥<label>499.92*12期</label>
+					               		<span>￥5,999.00</span>
+			               			
+			               			
+				               
+	                          </h6>
+	                      </div>
+	                  </a>
+	              </li>
+		      	
+	              <li>
+	                  <a href="/mall/weiproduct/weiProductDetail.action?product.id=25287">
+	                      <div class="img"><img src="picture/1408531928906279.jpg"></div>
+	                      <div class="info">
+	                          <h4>opso欧普索 MFI认证多口usb充电器苹果6充电器头iphone5 2a充电头</h4>
+	                          <h5>
+	                          	 
+	                          		有一种生活叫U站
+	                          	
+	                          </h5>
+	                          <h6>
+	                          	
+				               
+			               			
+					               		￥<label>99.00*1期</label>
+					               		<span>￥99.00</span>
+			               			
+			               			
+				               
+	                          </h6>
+	                      </div>
+	                  </a>
+	              </li>
+		      	
+	              <li>
+	                  <a href="/mall/weiproduct/weiProductDetail.action?product.id=25288">
+	                      <div class="img"><img src="picture/225552-338584235.jpg"></div>
+	                      <div class="info">
+	                          <h4>苹果 美国队长移动电源 复仇者联盟 盾牌 苹果手机平板通用充电宝 正品</h4>
+	                          <h5>
+	                          	 
+	                          </h5>
+	                          <h6>
+	                          	
+				               
+			               			
+					               		￥<label>399.00*1期</label>
+					               		<span>￥399.00</span>
+			               			
+			               			
+				               
+	                          </h6>
+	                      </div>
+	                  </a>
+	              </li>
+		      	
+	              <li>
+	                  <a href="/mall/weiproduct/weiProductDetail.action?product.id=24220">
+	                      <div class="img"><img src="picture/135004-418802687.jpg"></div>
+	                      <div class="info">
+	                          <h4>功夫熊猫 iphone6S/6手机壳 墨金浮雕 墨金浮雕</h4>
+	                          <h5>
+	                          	 
+	                          		1.高硬度PC材质    
+2.多层印刷工艺（EPT 6层浮雕0.3mm） 
+3.浮雕区域平滑处理  
+4.背板防刮花工艺     
+5.手感细腻              
+6.时尚礼盒包装
+	                          	
+	                          </h5>
+	                          <h6>
+	                          	
+				               
+			               			
+					               		￥<label>22.67*3期</label>
+					               		<span>￥68.00</span>
+			               			
+			               			
+				               
+	                          </h6>
+	                      </div>
+	                  </a>
+	              </li>
+		      	
+	              <li>
+	                  <a href="/mall/weiproduct/weiProductDetail.action?product.id=24222">
+	                      <div class="img"><img src="picture/134813-418802687.jpg"></div>
+	                      <div class="info">
+	                          <h4>功夫熊猫 iphone6S/6手机壳  亮银 亮银</h4>
+	                          <h5>
+	                          	 
+	                          		1.高硬度PC材质 
+2.素材镀银工艺    
+3.多层印刷工艺（EPT 3次印刷）  
+4.背板防刮花工艺    
+5.手感细腻  
+6.时尚礼盒包装
+	                          	
+	                          </h5>
+	                          <h6>
+	                          	
+				               
+			               			
+					               		￥<label>22.67*3期</label>
+					               		<span>￥68.00</span>
+			               			
+			               			
+				               
+	                          </h6>
+	                      </div>
+	                  </a>
+	              </li>
+		      	
+	              <li>
+	                  <a href="/mall/weiproduct/weiProductDetail.action?product.id=24223">
+	                      <div class="img"><img src="picture/134734-418802687.jpg"></div>
+	                      <div class="info">
+	                          <h4>功夫熊猫 iphone6S/6手机壳  墨金 墨金</h4>
+	                          <h5>
+	                          	 
+	                          		1.高硬度PC材质 
+2.素材镀银工艺    
+3.多层印刷工艺（EPT 3次印刷）  
+4.背板防刮花工艺    
+5.手感细腻  
+6.时尚礼盒包装
+	                          	
+	                          </h5>
+	                          <h6>
+	                          	
+				               
+			               			
+					               		￥<label>22.67*3期</label>
+					               		<span>￥68.00</span>
+			               			
+			               			
+				               
+	                          </h6>
+	                      </div>
+	                  </a>
+	              </li>
+		      	
+	              <li>
+	                  <a href="/mall/weiproduct/weiProductDetail.action?product.id=24224">
+	                      <div class="img"><img src="picture/134633-418802687.jpg"></div>
+	                      <div class="info">
+	                          <h4>功夫熊猫 iphone6S/6手机壳  Q版大头</h4>
+	                          <h5>
+	                          	 
+	                          		1.PC+TPU混合材质
+2.背板防刮花工艺                   
+3.二次注塑提高硬度 
+4.多层印刷工艺（EPT 3次印刷）              
+5.时尚礼盒包装
+	                          	
+	                          </h5>
+	                          <h6>
+	                          	
+				               
+			               			
+					               		￥<label>22.67*3期</label>
+					               		<span>￥68.00</span>
+			               			
+			               			
+				               
+	                          </h6>
+	                      </div>
+	                  </a>
+	              </li>
+		      	
+	              <li>
+	                  <a href="/mall/weiproduct/weiProductDetail.action?product.id=24225">
+	                      <div class="img"><img src="picture/133842-418802687.jpg"></div>
+	                      <div class="info">
+	                          <h4>功夫熊猫 iphone6S/6手机壳 多彩波点</h4>
+	                          <h5>
+	                          	 
+	                          		1.PC+TPU混合材质 
+2.背板防刮花工艺
+3.二次注塑提高硬度 
+4.高精度打印，色彩逼真
+5.时尚礼盒包装
+	                          	
+	                          </h5>
+	                          <h6>
+	                          	
+				               
+			               			
+					               		￥<label>18.34*3期</label>
+					               		<span>￥55.00</span>
+			               			
+			               			
+				               
+	                          </h6>
+	                      </div>
+	                  </a>
+	              </li>
+		      	
+	              <li>
+	                  <a href="/mall/weiproduct/weiProductDetail.action?product.id=24228">
+	                      <div class="img"><img src="picture/142642-418802687.jpg"></div>
+	                      <div class="info">
+	                          <h4>小米 新款移动电源10000mAh 银色</h4>
+	                          <h5>
+	                          	 
+	                          		9重电路保护，使用更安全
+自动调节输出电量，可充平板电脑，兼容主流手机与数码设备
+	                          	
+	                          </h5>
+	                          <h6>
+	                          	
+				               
+			               			
+					               		￥<label>29.67*3期</label>
+					               		<span>￥89.00</span>
+			               			
+			               			
+				               
+	                          </h6>
+	                      </div>
+	                  </a>
+	              </li>
+		      	
+	              <li>
+	                  <a href="/mall/weiproduct/weiProductDetail.action?product.id=24226">
+	                      <div class="img"><img src="picture/145807-418802687.jpg"></div>
+	                      <div class="info">
+	                          <h4>爱国者 移动电源 D12</h4>
+	                          <h5>
+	                          	 
+	                          		急速自充电
+小巧便携，一手掌握
+	                          	
+	                          </h5>
+	                          <h6>
+	                          	
+				               
+			               			
+					               		￥<label>28.34*3期</label>
+					               		<span>￥85.00</span>
+			               			
+			               			
+				               
+	                          </h6>
+	                      </div>
+	                  </a>
+	              </li>
+		      	
+	          </ul>
+		</div>
+		<div class="loading_more"><a id="getMore">拖动加载更多..</a></div>
+		
+		
+      <!--listEnd-->
+      <!-- TO_TOP_START -->
+      	<a href="javascript:to_top();" class="to_top" style="display: none;"></a>
+      <!-- TO_TOP_END -->
+	  
+		<div class="mallPage">
+		   	<form id="pageForm" name="pageForm" action="/mall/weiproduct/weiProductList.action;jsessionid=5BA9129B3E30C5DEAA48C8FA7934E593.node1" method="post">
+				<input type="hidden" name="keyword" value="" id="keywordHidden"/>
+				<input type="hidden" name="productCtg" value="359" id="productCtg"/>
+		    	<input type="hidden" name="productType" value="2" id="productType"/>
+		    	<input type="hidden" name="pointCondition" id="pointCondition" value="" />
+		    	<input type="hidden" name="orderType" value="" id="orderType"/>
+		    	<input type="hidden" name="orderSortBy" value="" id="orderSortBy"/>
+		    	<input type="hidden" name="pointRange" value="" id="pointRange"/>
+		    	<input type="hidden" name="currentPage" value="1" id="currentPage"/>
+		    	
+		    </form>
+
+
+
+	    </div>
+	
+<script src="js/dynamicloadpage.js"></script>
+<script type="text/javascript">
+	var PART_CREDITS_CASH_FLAG = '1';
+	var productCtg = $("#productCtg").val();
+	var productType = $("#productType").val();
+	var pointCondition = $("#pointCondition").val();
+	var pointRange = $("#pointRange").val();
+	var orderType = $("#orderType").val();
+	var orderSortBy = $("#orderSortBy").val();
+	var currentPage = $("#currentPage").val();
+	var totalPages = '8';
+	
+	var myConfig = {
+		templateFlag : false,
+		noTemplateCallback : function (dataObj){
+			var strMon='';
+			if('1' == productType){
+				if ('1' == PART_CREDITS_CASH_FLAG) {
+					if(dataObj.fullCredits>0 && dataObj.partPrice > 0){
+						strMon='<label>'+dataObj.fullCredits+'</label>积分';	
+							strMon += '<span style="margin-right: 0px;"><font class="price2">' + dataObj.partCredits + '</font>积分&nbsp;+&nbsp;￥<font class="price2">' + parseFloat(dataObj.partPrice).toFixed(2) + '</font></span>';
+					} else if (dataObj.fullCredits>0) {
+						strMon='<label>'+dataObj.fullCredits+'</label>积分';	
+					} else {
+						strMon='<label>'+dataObj.partCredits+'</label>积分&nbsp;+&nbsp;<font class="price_unit">￥</font><label>' + parseFloat(dataObj.partPrice).toFixed(2) + '</label>';
+					}
+				} else if (dataObj.fullCredits > 0) {
+					strMon='<label>'+dataObj.fullCredits+'</label>积分';	
+				}
+			} else {
+				if(installmentFlag == '1' && '' + dataObj.instalmentPrice != ''){
+					strMon='￥<label>'+dataObj.instalmentPrice;
+					if(dataObj.instalmentPrice.indexOf('期') == -1){
+						strMon += '期';
+					}
+					strMon += '</label>';
+					strMon += '<span>￥' + parseFloat(dataObj.salePrice).toFixed(2) + '</span>';
+				} else {
+					strMon='￥<label>'+parseFloat(dataObj.salePrice).toFixed(2)+'</label>';	
+				}
+			}
+			var str = '';
+			return str = '<li><a href="'+appPath+'/weiproduct/weiProductDetail.action?product.id='+dataObj.id+'"><div class="img"><img src='picture/ff041c29d5cc4bc6b3a5b702d4dae1ef.gif''+dataObj.logoPic+'></div> <div class="info"><h4>'+dataObj.productName+'</h4><h5>'+dataObj.productSummary +'</h5> <h6>'+strMon+'</h6></div></a></li>';
+		},
+		listName : "data",
+		appendHtmlRootId : "#boxList ul",
+		url : "/mall/weiproduct/weiProductList.action",
+		params : {
+			'targetType' : 'json',
+			'productCtg' : productCtg,
+			'productType' : productType,
+			'pointCondition' : pointCondition,
+			'pointRange': pointRange,
+			'keyword' : $("#keywordHidden").val(),
+			'orderType' : orderType,
+			'orderSortBy' : orderSortBy
+		},
+		currentPageKey : 'page.currentPage',
+		currentPage : currentPage,
+		totalPage : totalPages,
+		toTopFlag : true,
+		topCallback: function(){
+			if($(window).scrollTop() > (2 * $(window).height())){
+				$(".to_top").css('display','block');
+			} else {
+				$(".to_top").css('display','none');
+			}
+		},
+		loading : function(){
+			//正在加载
+			$("#getMore").html('<img src="picture/bx_loader.gif" width="25" height="25"/>');//出现加载图片
+			//console.log("页面加载中");
+		},
+		loadSuccess : function() {
+			//加载成功
+			$("#getMore").html("拖动加载更多..");
+			$("#currentPage").val(this.currentPage);
+			//console.log("页面成功");
+		},
+		loadError : function() {
+			//加载失败
+			//console.log("页面失败");
+			showFail("数据加载失败！");
+		},
+		loadEnd : function(){
+			//页面加载完成
+			$("#getMore").html("已加载全部");
+			$("#currentPage").val(this.currentPage);
+			//console.log("页面完成");
+		},
+		errorCallback : function (xhr){
+			//console.log("系统错误!");
+			showFail("数据加载失败！");
+		}
+	};
+	var dynamic = new DynamicLoadPage(myConfig);//实例化
+	dynamic.autoScroll();
+	
+</script>
+	
+		 <!--手机数码End-->
+        <!--menuStart-->
+       
+        <!--menuEnd-->
+       <!--  <div style="height: 20px;width: 100%;"></div> -->
+        <!-- 版权 -->
+		<footer class="copyright">银行卡商城 2015 – 版权所有 沪ICP备11039870号-2</footer>
+	</div>
+	
+	
+	 <div id="popup_fail" style="display: none">
+        <!--maskStart-->    
+            <div class="mask"></div>
+        <!--maskEnd-->        
+            <div class="popup">
+                <div class="title">
+                    <div class="LR"></div>
+                    <div class="center">提示</div>                
+                    <div class="LR"><a title="关闭" class="close" onClick="closeFail()"></a></div>                
+                </div>
+                <div class="oper_tips">
+                    <img align="absmiddle" src="picture/icon_alert.png"><span id="failMessage">对不起，操作失败！</span>
+                </div>
+            </div>
+        </div>
+        
+      <div id="popup_succ" style="display: none">
+      <!--maskStart-->    
+          <div class="mask"></div>
+      <!--maskEnd-->        
+          <div class="popup">
+              <div class="title">
+                  <div class="LR"></div>
+                  <div class="center">提示</div>                
+                  <div class="LR"><a title="关闭" class="close" onClick="closeSuccess()"></a></div>                
+              </div>
+              <div class="oper_tips">
+                  <img align="absmiddle" src="picture/icon_complete.png"><span id="succMessage">恭喜您，操作成功！</span>
+              </div>
+          </div>
+      </div>
+
+	<div id="popup_confirm" style="display: none;">
+		<!--maskStart-->
+		<div class="mask"></div>
+		<!--maskEnd-->
+		<div class="popup">
+			<div class="title">
+				<div class="LR"></div>
+				<div class="center">提示</div>
+				<div class="LR">
+					<a title="关闭" class="close" onClick="closePopupConfirm()"></a>
+				</div>
+			</div>
+			<div class="oper_tips">
+				<img align="absmiddle" src="picture/icon_alert.png">
+				<span id="confirmMessage">提示信息</span>
+			</div>
+			<div class="box_btns">
+				<a id="btn_cancel" onClick="closePopupConfirm()" class="blur">取&nbsp;&nbsp;消</a>
+				<a href="javascript:void(0);" id="btn_sub">确&nbsp;&nbsp;定</a>
+			</div>
+		</div>
+	</div>
+	<div id="popup_waiting" style="display: none">
+      <!--maskStart-->    
+          <div class="mask"></div>
+      <!--maskEnd-->        
+          <div class="popup" align="center">
+			<img align="absmiddle" src="picture/bx_loader.gif">
+          </div>
+      </div>
+	
+</body>
+</html>
+<script type="text/javascript">
+	function showSuccess(message) {
+		$("#popup_succ").css("display", "block");
+		$("#popup_succ #succMessage").html(message);
+	};
+	function closeSuccess() {
+		$("#popup_succ").css("display", "none");
+	};
+	function showFail(message) {
+		$("#popup_fail").css("display", "block");
+		$("#popup_fail #failMessage").html(message);
+	};
+	function closeFail() {
+		$("#popup_fail").css("display", "none");
+	};
+
+	/**
+	 * alertConfirm弹出
+	 * @param {} message
+	 * @param {} bindEvent 回调函数
+	 */
+	function showConfirmMessage(message,bindEvent){
+		$("#popup_confirm").css("display", "block");
+		$("#popup_confirm #confirmMessage").html(message);
+		$("#btn_sub").removeAttr("href");
+		$("#btn_sub").attr("href",bindEvent);
+	}
+	/**
+	 * 关闭alertConfirm弹出
+	 */
+	function closePopupConfirm(){
+		$("#popup_confirm").css("display","none");
+	}
+</script>
