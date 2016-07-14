@@ -1,7 +1,7 @@
 package com.lemon.jee.common.config;
 
 public class Config {
-
+	
 	public static final String EXT_GRID_ITEMS = "items";
 	public static final String EXT_GRID_TOTAL = "total";
 	public static final String EXT_SUCCESS = "success";
